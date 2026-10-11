@@ -1,0 +1,28 @@
+{% extends 'menuapp/base.html' %}
+{% block content %}
+  <h2 class="mb-4">{% if lieu == 'Frigo' %}Mon Frigo 🧊{% else %}Mon Placard 🗄️{% endif %}</h2>
+
+  <div class="row">
+    {% for ingredient in ingredients %}
+      <div class="col-md-3 mb-3">
+        <div class="card h-100 {% if ingredient.en_rupture %}border-danger{% endif %}">
+          <div class="card-body">
+            <h5 class="card-title">{{ ingredient.emoji }} {{ ingredient.nom }}</h5>
+            <p class="card-text">
+              Quantité : {{ ingredient.quantite }} {{ ingredient.unite }}
+              {% if ingredient.en_rupture %}<span class="badge bg-danger">Rupture</span>{% endif %}<br>
+              Catégorie : {{ ingredient.categorie|default:"—" }}
+            </p>
+            <a href="{% url 'modifier_ingredient' ingredient.id %}" class="btn btn-warning btn-sm">Modifier</a>
+            <a href="{% url 'supprimer_ingredient' ingredient.id %}" class="btn btn-danger btn-sm">Supprimer</a>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p>Aucun ingrédient pour le moment.</p>
+    {% endfor %}
+  </div>
+
+  <a href="{% if lieu == 'Frigo' %}{% url 'ajouter_ingredient' %}{% else %}{% url 'ajouter_ingredient_placard' %}{% endif %}" class="btn btn-success">Ajouter un ingrédient</a>
+  <a href="{% url 'accueil' %}" class="btn btn-secondary">Retour accueil</a>
+{% endblock %}

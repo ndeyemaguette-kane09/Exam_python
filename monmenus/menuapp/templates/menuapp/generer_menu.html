@@ -17,7 +17,7 @@
           {% endfor %}
         </ul>
         <h4>Instructions :</h4>
-        <p>{{ recette.instructions }}</p>
+        <p>{{ recette.instructions|linebreaksbr }}</p>
 
         <div class="d-flex flex-wrap gap-2 mb-3">
           <a href="{% url 'export_pdf' recette.id %}" class="btn btn-warning">

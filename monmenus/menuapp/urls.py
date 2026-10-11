@@ -3,22 +3,18 @@ from . import views
 
 urlpatterns = [
     path('', views.accueil, name='accueil'),
-    path('frigo/', views.frigo, name='frigo'),
-    path('ajouter-ingredient/', views.ajouter_ingredient, name='ajouter_ingredient'),
-    path('ajouter-ingredient_placard/', views.ajouter_ingredient_placard, name='ajouter_ingredient_placard'),
-    path('generer-menu/', views.generer_menu, name='generer_menu'),
-    path('export-pdf/<int:recette_id>/', views.export_pdf, name='export_pdf'),
-    path('modifier-ingredient/<int:id>/', views.modifier_ingredient, name='modifier_ingredient'),
-    path('supprimer-ingredient/<int:id>/', views.supprimer_ingredient, name='supprimer_ingredient'),
-    path('placard/', views.placard, name='placard'),
-    path('confirmer-recette/<int:recette_id>/', views.confirmer_recette, name='confirmer_recette'),
-    path('valider-recette/<int:recette_id>/', views.valider_recette, name='valider_recette'),
+    path('frigo/', views.stock, {'lieu': 'Frigo'}, name='frigo'),
+    path('placard/', views.stock, {'lieu': 'Placard'}, name='placard'),
+    path('frigo/ajouter/', views.ajouter_ingredient, {'lieu': 'Frigo'}, name='ajouter_ingredient'),
+    path('placard/ajouter/', views.ajouter_ingredient, {'lieu': 'Placard'}, name='ajouter_ingredient_placard'),
+    path('ingredient/<int:id>/modifier/', views.modifier_ingredient, name='modifier_ingredient'),
+    path('ingredient/<int:id>/supprimer/', views.supprimer_ingredient, name='supprimer_ingredient'),
     path('recettes/', views.recettes, name='recettes'),
     path('recette/<int:recette_id>/', views.detail_recette, name='detail_recette'),
-    path('modifier-ingredient_placard/<int:id>/', views.modifier_ingredient_placard, name='modifier_ingredient_placard'),
-    path('supprimer-ingredient_placard/<int:id>/', views.supprimer_ingredient_placard, name='supprimer_ingredient_placard'),
+    path('recette/<int:recette_id>/confirmer/', views.confirmer_recette, name='confirmer_recette'),
+    path('recette/<int:recette_id>/favori/', views.basculer_favori, name='basculer_favori'),
+    path('export-pdf/<int:recette_id>/', views.export_pdf, name='export_pdf'),
+    path('generer-menu/', views.generer_menu, name='generer_menu'),
     path('historique/', views.historique, name='historique'),
-    path('ajouter-favori/<int:recette_id>/', views.ajouter_favori, name='ajouter_favori'),
     path('mes-favoris/', views.mes_favoris, name='mes_favoris'),
-    
-    ]
+]

@@ -7,12 +7,18 @@
         {% if recette.image %}
           <img src="{{ recette.image.url }}" alt="{{ recette.nom }}" class="card-img-top img-fluid mb-3 rounded" style="max-height: 400px; object-fit: cover;">
         {% endif %}
-                <form method="post" action="{% url 'ajouter_favori' recette.id %}">
-  {% csrf_token %}
-  <button type="submit" class="btn btn-outline-danger">
-    <i class="bi bi-chat-heart"></i>  favoris
-  </button>
-</form>
+        <form method="post" action="{% url 'basculer_favori' recette.id %}" class="mb-3">
+          {% csrf_token %}
+          {% if est_favori %}
+            <button type="submit" class="btn btn-danger">
+              <i class="bi bi-heart-fill"></i> Retirer des favoris
+            </button>
+          {% else %}
+            <button type="submit" class="btn btn-outline-danger">
+              <i class="bi bi-heart"></i> Ajouter aux favoris
+            </button>
+          {% endif %}
+        </form>
         <h2 class="card-title">{{ recette.nom }}</h2>
         <p><strong>Coût estimé :</strong> {{ recette.cout_estime }} Fcfa</p>
         <p><strong>Temps de préparation :</strong> {{ recette.temps_preparation }} min</p>
@@ -22,7 +28,7 @@
           {% for ing in recette.ingredients.all %}
             <li class="list-group-item">
               {{ ing.nom }} : {{ ing.quantite }} {{ ing.unite }}
-              {% if ing.quantite == 0 or ing.quantite == "0" or ing.quantite == "0.0" %}
+              {% if ing.en_rupture %}
                 <span class="badge bg-danger">Rupture de stock</span>
               {% endif %}
             </li>
@@ -30,7 +36,7 @@
         </ul>
 
         <h4>Instructions :</h4>
-        <p>{{ recette.instructions }}</p>
+        <p>{{ recette.instructions|linebreaksbr }}</p>
 
         <h5><i class="bi bi-share"></i> Partager cette recette :</h5>
         <div class="d-flex gap-2 mb-3">
@@ -49,6 +55,7 @@
 
         <div class="d-flex justify-content-between">
           <a href="{% url 'recettes' %}" class="btn btn-secondary">⬅️ Retour à la liste</a>
+          <a href="{% url 'confirmer_recette' recette.id %}" class="btn btn-success">✅ Cuisiner cette recette</a>
           <a href="{% url 'export_pdf' recette.id %}" class="btn btn-warning">📄 Exporter en PDF</a>
         </div>
       </div>

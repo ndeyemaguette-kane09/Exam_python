@@ -1,17 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    {% extends 'menuapp/base.html' %}
+{% extends 'menuapp/base.html' %}
 {% block content %}
   <h2>Confirmer la recette : {{ recette.nom }}</h2>
+  <p class="text-muted">Indique ce que tu as utilisé, le stock sera mis à jour.</p>
   <form method="POST">
     {% csrf_token %}
-    <table class="table">
+    <table class="table align-middle">
       <thead>
         <tr>
           <th>Ingrédient</th>
@@ -22,17 +15,22 @@
       <tbody>
         {% for ing in ingredients %}
         <tr>
-          <td>{{ ing.nom }}</td>
-          <td>{{ ing.quantite }}</td>
+          <td>{{ ing.emoji }} {{ ing.nom }}</td>
           <td>
-            <input type="number" step="0.01" name="quantite_{{ ing.id }}" value="{{ ing.quantite_recette }}" class="form-control">
+            {{ ing.quantite }} {{ ing.unite }}
+            {% if ing.en_rupture %}<span class="badge bg-danger">Rupture</span>{% endif %}
+          </td>
+          <td>
+            <div class="input-group">
+              <input type="number" step="0.01" min="0" name="quantite_{{ ing.id }}" placeholder="0" class="form-control">
+              {% if ing.unite %}<span class="input-group-text">{{ ing.unite }}</span>{% endif %}
+            </div>
           </td>
         </tr>
         {% endfor %}
       </tbody>
     </table>
     <button type="submit" class="btn btn-success">Valider et mettre à jour le stock</button>
+    <a href="{% url 'detail_recette' recette.id %}" class="btn btn-secondary">Annuler</a>
   </form>
 {% endblock %}
-</body>
-</html>

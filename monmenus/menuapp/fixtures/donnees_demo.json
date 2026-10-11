@@ -1,0 +1,577 @@
+[
+{
+  "model": "menuapp.ingredient",
+  "pk": 3,
+  "fields": {
+    "nom": "boeuf",
+    "quantite": 500.0,
+    "unite": "g",
+    "categorie": "Viandes",
+    "lieu": "Frigo"
+  }
+},
+{
+  "model": "menuapp.ingredient",
+  "pk": 8,
+  "fields": {
+    "nom": "riz",
+    "quantite": 900.0,
+    "unite": "g",
+    "categorie": "Riz",
+    "lieu": "Placard"
+  }
+},
+{
+  "model": "menuapp.ingredient",
+  "pk": 9,
+  "fields": {
+    "nom": "macaroni ",
+    "quantite": 500.0,
+    "unite": "g",
+    "categorie": "Pâtes",
+    "lieu": "Placard"
+  }
+},
+{
+  "model": "menuapp.ingredient",
+  "pk": 10,
+  "fields": {
+    "nom": "huile",
+    "quantite": 1.6,
+    "unite": "L",
+    "categorie": "Huiles & Vinaigres",
+    "lieu": "Placard"
+  }
+},
+{
+  "model": "menuapp.ingredient",
+  "pk": 11,
+  "fields": {
+    "nom": "Moutarde",
+    "quantite": 50.0,
+    "unite": "g",
+    "categorie": "Épices",
+    "lieu": "Placard"
+  }
+},
+{
+  "model": "menuapp.ingredient",
+  "pk": 12,
+  "fields": {
+    "nom": "sel",
+    "quantite": 42.0,
+    "unite": "g",
+    "categorie": "Épices",
+    "lieu": "Placard"
+  }
+},
+{
+  "model": "menuapp.ingredient",
+  "pk": 13,
+  "fields": {
+    "nom": "oeufs",
+    "quantite": 11.0,
+    "unite": "pieces",
+    "categorie": "Œufs",
+    "lieu": "Frigo"
+  }
+},
+{
+  "model": "menuapp.ingredient",
+  "pk": 14,
+  "fields": {
+    "nom": "poivre",
+    "quantite": 6.0,
+    "unite": "g",
+    "categorie": "Épices",
+    "lieu": "Placard"
+  }
+},
+{
+  "model": "menuapp.ingredient",
+  "pk": 15,
+  "fields": {
+    "nom": "piment",
+    "quantite": 45.0,
+    "unite": "g",
+    "categorie": "Épices",
+    "lieu": "Placard"
+  }
+},
+{
+  "model": "menuapp.ingredient",
+  "pk": 16,
+  "fields": {
+    "nom": "lait",
+    "quantite": 1.0,
+    "unite": "L",
+    "categorie": "Produits laitiers",
+    "lieu": "Frigo"
+  }
+},
+{
+  "model": "menuapp.ingredient",
+  "pk": 17,
+  "fields": {
+    "nom": "oignons",
+    "quantite": 950.0,
+    "unite": "g",
+    "categorie": "Autre",
+    "lieu": "Placard"
+  }
+},
+{
+  "model": "menuapp.ingredient",
+  "pk": 18,
+  "fields": {
+    "nom": "Ail",
+    "quantite": 0.0,
+    "unite": "g",
+    "categorie": "",
+    "lieu": "Placard"
+  }
+},
+{
+  "model": "menuapp.ingredient",
+  "pk": 19,
+  "fields": {
+    "nom": "cuisse de poulet",
+    "quantite": 4.0,
+    "unite": "pieces",
+    "categorie": "Viandes",
+    "lieu": "Frigo"
+  }
+},
+{
+  "model": "menuapp.ingredient",
+  "pk": 20,
+  "fields": {
+    "nom": "Champignons",
+    "quantite": 200.0,
+    "unite": "g",
+    "categorie": "Légumes frais",
+    "lieu": "Frigo"
+  }
+},
+{
+  "model": "menuapp.ingredient",
+  "pk": 21,
+  "fields": {
+    "nom": "Steak",
+    "quantite": 3.0,
+    "unite": "pieces",
+    "categorie": "Viandes",
+    "lieu": "Frigo"
+  }
+},
+{
+  "model": "menuapp.ingredient",
+  "pk": 22,
+  "fields": {
+    "nom": "Pomme de terre",
+    "quantite": 400.0,
+    "unite": "g",
+    "categorie": "Légumes frais",
+    "lieu": "Placard"
+  }
+},
+{
+  "model": "menuapp.ingredient",
+  "pk": 23,
+  "fields": {
+    "nom": "Beurre",
+    "quantite": 200.0,
+    "unite": "g",
+    "categorie": "Produits laitiers",
+    "lieu": "Frigo"
+  }
+},
+{
+  "model": "menuapp.ingredient",
+  "pk": 24,
+  "fields": {
+    "nom": "Poisson",
+    "quantite": 1.0,
+    "unite": "pieces",
+    "categorie": "Poissons",
+    "lieu": "Frigo"
+  }
+},
+{
+  "model": "menuapp.ingredient",
+  "pk": 25,
+  "fields": {
+    "nom": "Cube Maggi",
+    "quantite": 23.0,
+    "unite": "pieces",
+    "categorie": "Épices",
+    "lieu": "Placard"
+  }
+},
+{
+  "model": "menuapp.ingredient",
+  "pk": 26,
+  "fields": {
+    "nom": "poivron rouge",
+    "quantite": 0.5,
+    "unite": "pieces",
+    "categorie": "Légumes frais",
+    "lieu": "Frigo"
+  }
+},
+{
+  "model": "menuapp.ingredient",
+  "pk": 27,
+  "fields": {
+    "nom": "tomate Concentrée",
+    "quantite": 90.0,
+    "unite": "g",
+    "categorie": "Conserves",
+    "lieu": "Frigo"
+  }
+},
+{
+  "model": "menuapp.ingredient",
+  "pk": 28,
+  "fields": {
+    "nom": "pesto",
+    "quantite": 14.0,
+    "unite": "g",
+    "categorie": "Conserves",
+    "lieu": "Frigo"
+  }
+},
+{
+  "model": "menuapp.ingredient",
+  "pk": 29,
+  "fields": {
+    "nom": "spaghetti",
+    "quantite": 400.0,
+    "unite": "g",
+    "categorie": "Pâtes",
+    "lieu": "Placard"
+  }
+},
+{
+  "model": "menuapp.ingredient",
+  "pk": 30,
+  "fields": {
+    "nom": "Tomate cerise",
+    "quantite": 150.0,
+    "unite": "g",
+    "categorie": "Fruits frais",
+    "lieu": "Frigo"
+  }
+},
+{
+  "model": "menuapp.ingredient",
+  "pk": 31,
+  "fields": {
+    "nom": "citron",
+    "quantite": 3.0,
+    "unite": "pieces",
+    "categorie": "Légumes frais",
+    "lieu": "Frigo"
+  }
+},
+{
+  "model": "menuapp.ingredient",
+  "pk": 32,
+  "fields": {
+    "nom": "quinoa",
+    "quantite": 100.0,
+    "unite": "g",
+    "categorie": "Céréales",
+    "lieu": "Placard"
+  }
+},
+{
+  "model": "menuapp.ingredient",
+  "pk": 33,
+  "fields": {
+    "nom": "carottes",
+    "quantite": 3.0,
+    "unite": "pieces",
+    "categorie": "Légumes frais",
+    "lieu": "Frigo"
+  }
+},
+{
+  "model": "menuapp.ingredient",
+  "pk": 34,
+  "fields": {
+    "nom": "concombre",
+    "quantite": 2.0,
+    "unite": "pieces",
+    "categorie": "Légumes frais",
+    "lieu": "Frigo"
+  }
+},
+{
+  "model": "menuapp.ingredient",
+  "pk": 35,
+  "fields": {
+    "nom": "Thon",
+    "quantite": 2.0,
+    "unite": "boites",
+    "categorie": "Conserves",
+    "lieu": "Placard"
+  }
+},
+{
+  "model": "menuapp.ingredient",
+  "pk": 36,
+  "fields": {
+    "nom": "herbes de Provence",
+    "quantite": 50.0,
+    "unite": "g",
+    "categorie": "Épices",
+    "lieu": "Placard"
+  }
+},
+{
+  "model": "menuapp.ingredient",
+  "pk": 37,
+  "fields": {
+    "nom": "Fromage râpé",
+    "quantite": 100.0,
+    "unite": "g",
+    "categorie": "Produits laitiers",
+    "lieu": "Frigo"
+  }
+},
+{
+  "model": "menuapp.ingredient",
+  "pk": 38,
+  "fields": {
+    "nom": "Jambon de boeuf",
+    "quantite": 8.0,
+    "unite": "tranches",
+    "categorie": "Charcuterie",
+    "lieu": "Frigo"
+  }
+},
+{
+  "model": "menuapp.recette",
+  "pk": 1,
+  "fields": {
+    "nom": "Pâtes au pesto",
+    "cout_estime": 1000.0,
+    "temps_preparation": 15,
+    "instructions": "- Fais bouillir les pates\r\n- Ajoute le pesto\r\n-...",
+    "image": "recettes/pâtes_pesto.jpg",
+    "ingredients": [
+      12,
+      14,
+      18,
+      28,
+      29
+    ]
+  }
+},
+{
+  "model": "menuapp.recette",
+  "pk": 2,
+  "fields": {
+    "nom": "Riz au boeuf sauté",
+    "cout_estime": 2000.0,
+    "temps_preparation": 25,
+    "instructions": "- rincer le riz et laisser tremper dans de l'eau clair 15 min\r\n- verser le riz dans une marmite avec son double de quantité en eau avec une c-à-c de sel\r\n-rincer et mariner la viande avec les épices de ton choix \r\n- chauffer un filet d'huile et fais dorer la viande\r\n- verser un fond d'eau pour que la viande cuise bien \r\n- apres evaporation de l'eau éplucher les oignons et les couper en lamelles avant de les ajouter a la viande \r\n- une fois cuits servir avec du riz\r\n                     Bon Appétit !!!",
+    "image": "recettes/riz_avec_du_boeuf_sauté_aux_oignons.jpg",
+    "ingredients": [
+      3,
+      8,
+      10,
+      11,
+      12,
+      14,
+      15,
+      17
+    ]
+  }
+},
+{
+  "model": "menuapp.recette",
+  "pk": 3,
+  "fields": {
+    "nom": "Omelette aux champignons",
+    "cout_estime": 1000.0,
+    "temps_preparation": 8,
+    "instructions": "1️⃣ Nettoie et émince les champignons. Épluche et coupe finement l’oignon.\r\n2️⃣ Dans une poêle, fais fondre le beurre ou chauffe l’huile. Fais revenir l’oignon jusqu’à ce qu’il devienne translucide. Ajoute les champignons, fais-les sauter 5 à 7 min jusqu’à ce qu’ils rendent leur eau et soient dorés.\r\n3️⃣ Bats les œufs dans un bol, ajoute une pincée de sel, du poivre et un petit filet de lait si tu veux.\r\n4️⃣ Verse les œufs battus sur les champignons. Laisse cuire à feu moyen, replie délicatement l’omelette quand elle est prise mais encore un peu baveuse à l’intérieur.\r\n5️⃣ Sers chaud, avec une petite salade verte ou une tranche de pain.",
+    "image": "recettes/omelette_aux_champignons.jpg",
+    "ingredients": [
+      10,
+      12,
+      13,
+      14,
+      20
+    ]
+  }
+},
+{
+  "model": "menuapp.recette",
+  "pk": 4,
+  "fields": {
+    "nom": "Steak frites maison",
+    "cout_estime": 2500.0,
+    "temps_preparation": 45,
+    "instructions": "1️⃣ Épluche et coupe les pommes de terre en bâtonnets pour faire des frites.\r\n\r\n2️⃣ Fais chauffer l’huile dans une poêle ou une friteuse (ou au four si tu préfères limiter l’huile). Plonge les frites jusqu’à ce qu’elles soient bien dorées et croustillantes. Égoutte-les sur du papier absorbant, sale-les.\r\n\r\n3️⃣ Assaisonne ton steak avec sel et poivre.\r\n\r\n4️⃣ Dans une poêle bien chaude, fais fondre un peu de beurre ou ajoute un filet d’huile. Dépose le steak, saisis-le 2-3 min de chaque côté selon la cuisson désirée (saignant, à point, bien cuit).\r\n\r\n5️⃣ Serre le steak avec les frites. Tu peux ajouter une petite salade verte ou une sauce maison (ketchup, moutarde, ou une sauce au poivre simple).",
+    "image": "recettes/Steak_frites_maison.jpg",
+    "ingredients": [
+      10,
+      12,
+      14,
+      15,
+      21,
+      22
+    ]
+  }
+},
+{
+  "model": "menuapp.recette",
+  "pk": 5,
+  "fields": {
+    "nom": "Djolof Rice (Riz Wolof)",
+    "cout_estime": 1000.0,
+    "temps_preparation": 50,
+    "instructions": "Étapes :\r\n1️⃣ Émince l’oignon et l’ail. Si tu mets du poulet, sale-le et poivre-le.\r\n\r\n2️⃣ Dans une casserole, fais chauffer un peu d’huile. Fais revenir l’oignon et l’ail, ajoute le concentré de tomate ou les tomates mixées. Laisse cuire 5 min.\r\n\r\n3️⃣ Ajoute le poulet ou le poisson pour les faire dorer légèrement. Assaisonne avec cube bouillon, sel, poivre et piment si tu aimes.\r\n\r\n4️⃣ Verse un peu d’eau, couvre et laisse mijoter pour que la viande ou le poisson cuisent bien.\r\n\r\n5️⃣ Retire la viande/poisson et réserve-les. Ajoute le riz lavé dans la sauce tomate.\r\n\r\n6️⃣ Verse juste assez d’eau pour couvrir le riz (un peu plus si nécessaire), puis laisse cuire à feu doux jusqu’à ce que l’eau soit absorbée et le riz bien cuit.\r\n\r\n7️⃣ Remets la viande ou le poisson par-dessus pour réchauffer avant de servir.",
+    "image": "recettes/Djolof_Rice_Poisson.jpg",
+    "ingredients": [
+      8,
+      10,
+      12,
+      14,
+      15,
+      17,
+      18,
+      24,
+      25,
+      26,
+      27
+    ]
+  }
+},
+{
+  "model": "menuapp.recette",
+  "pk": 6,
+  "fields": {
+    "nom": "Bowl “Yassa Light”",
+    "cout_estime": 2000.0,
+    "temps_preparation": 30,
+    "instructions": "Étapes :\r\n\r\n-  Marine le poisson avec citron, moutarde, oignon, sel, poivre (10 min).\r\n-  Grille ou cuit le poisson au four ou à la poêle sans trop de matière grasse.\r\n-  Fais cuire le quinoa selon les instructions.\r\n-  Dans un bol, dépose le quinoa, ajoute les crudités et le poisson par-dessus.\r\n-  Verse la marinade d’oignons légèrement réchauffée comme sauce.",
+    "image": "recettes/Bowl_Yassa_Light_au_poisson_grillé_et_quinoa.jpg",
+    "ingredients": [
+      8,
+      14,
+      15,
+      17,
+      18,
+      24,
+      25,
+      26,
+      30,
+      31,
+      32,
+      33,
+      34
+    ]
+  }
+},
+{
+  "model": "menuapp.recette",
+  "pk": 7,
+  "fields": {
+    "nom": "Pâtes au thon et sauce tomate",
+    "cout_estime": 1500.0,
+    "temps_preparation": 25,
+    "instructions": "Étapes :\r\n-  Fais cuire les pâtes dans de l’eau salée.\r\n-  Émince l’oignon, fais-le revenir dans un peu d’huile.\r\n-  Ajoute la tomate/concentré, laisse mijoter 5 min.\r\n-  Ajoute le thon émietté, mélange, assaisonne.\r\n-  Égoutte les pâtes, verse la sauce dessus.",
+    "image": "recettes/Pâtes_au_thon_et_sauce_tomate.jpg",
+    "ingredients": [
+      10,
+      12,
+      14,
+      17,
+      18,
+      25,
+      27,
+      29,
+      35,
+      36
+    ]
+  }
+},
+{
+  "model": "menuapp.recette",
+  "pk": 8,
+  "fields": {
+    "nom": "Pâtes façon carbonara",
+    "cout_estime": 1200.0,
+    "temps_preparation": 20,
+    "instructions": "Étapes :\r\n-  Fais cuire les pâtes dans de l’eau salée.\r\n-  Bats l’œuf dans un bol, ajoute le fromage râpé, sel, poivre.\r\n-  faire revenir du jambon ou bacon avec un peu d'huile\r\n-  Égoutte les pâtes, mets-les dans la poêle encore chaude avec un filet d’huile et de l’ail si tu veux.\r\n-  Retire du feu, verse le mélange œuf-fromage, remue vite pour que ça cuise avec la chaleur des pâtes sans devenir une omelette.\r\n-  servir dans une assiette et verser le jambon au dessus",
+    "image": "recettes/Pâtes_façon_carbonara.jpg",
+    "ingredients": [
+      12,
+      13,
+      14,
+      18,
+      29,
+      37,
+      38
+    ]
+  }
+},
+{
+  "model": "menuapp.recette",
+  "pk": 9,
+  "fields": {
+    "nom": "Riz sauté veggie aux œufs",
+    "cout_estime": 600.0,
+    "temps_preparation": 20,
+    "instructions": "Étapes :\r\n-  Coupe les légumes en petits dés et fais-les revenir dans une poêle. \r\n\r\n-  Ajoute le riz cuit, mélange bien.\r\n\r\n-  Bat l’œuf, verse-le dans la poêle et mélange pour qu’il coagule en petits morceaux.\r\n\r\n-  Assaisonne à ton goût.",
+    "image": "recettes/Riz_sauté_veggie_aux_œufs.jpg",
+    "ingredients": [
+      8,
+      12,
+      13,
+      14,
+      15,
+      17,
+      18,
+      26,
+      33
+    ]
+  }
+},
+{
+  "model": "menuapp.historique",
+  "pk": 1,
+  "fields": {
+    "recette": 1,
+    "date_validation": "2025-07-02T01:59:42.877Z"
+  }
+},
+{
+  "model": "menuapp.historique",
+  "pk": 2,
+  "fields": {
+    "recette": 3,
+    "date_validation": "2025-07-02T02:06:48.865Z"
+  }
+},
+{
+  "model": "menuapp.favori",
+  "pk": 1,
+  "fields": {
+    "recette": 1,
+    "date_ajout": "2025-07-02T03:14:00.132Z"
+  }
+},
+{
+  "model": "menuapp.favori",
+  "pk": 2,
+  "fields": {
+    "recette": 4,
+    "date_ajout": "2025-07-02T03:15:18.810Z"
+  }
+}
+]

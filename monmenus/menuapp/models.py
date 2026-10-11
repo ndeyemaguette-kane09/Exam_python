@@ -1,6 +1,5 @@
 from django.db import models
 
-# Create your models here.
 class Ingredient(models.Model):
     CATEGORIES_CHOICES = [
     ('Légumes frais', 'Légumes frais'),
@@ -31,6 +30,34 @@ class Ingredient(models.Model):
     unite = models.CharField(max_length=50, blank=True)
     categorie = models.CharField(max_length=50, choices=CATEGORIES_CHOICES, blank=True)
     lieu = models.CharField(max_length=50, choices=LIEU_CHOICES, default='Frigo')
+
+    EMOJIS = {
+        'Légumes frais': '🥦',
+        'Fruits frais': '🍎',
+        'Viandes': '🍗',
+        'Poissons': '🐟',
+        'Produits laitiers': '🧀',
+        'Œufs': '🥚',
+        'Charcuterie': '🥓',
+        'Plats cuisinés': '🍲',
+        'Pâtes': '🍝',
+        'Riz': '🍚',
+        'Légumineuses': '🌱',
+        'Conserves': '🥫',
+        'Épices': '🧂',
+        'Céréales': '🥣',
+        'Biscuits & Snacks': '🍪',
+        'Huiles & Vinaigres': '🫒',
+        'Farine & Sucre': '🍰',
+    }
+
+    @property
+    def emoji(self):
+        return self.EMOJIS.get(self.categorie, '🗃️')
+
+    @property
+    def en_rupture(self):
+        return self.quantite <= 0
 
     def __str__(self):
         return self.nom
