@@ -13,7 +13,15 @@ Projet Django réalisé à l'origine pour l'examen de Python, repris et amélior
 - **Cuisiner une recette** : tu indiques les quantités utilisées, le stock est décrémenté et la recette part dans l'historique
 - **Favoris**, **historique** et **export PDF** d'une recette
 
-## Lancer le projet
+## Tester sans rien installer
+
+[![Ouvrir dans GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/ndeyemaguette-kane09/Exam_python)
+
+Codespaces installe les dépendances, crée la base avec les données de démo et lance le serveur tout seul. L'appli s'ouvre dans un nouvel onglet au bout d'une minute environ. Si l'onglet ne s'ouvre pas, va dans l'onglet **Ports** de VS Code et clique sur l'icône 🌐 du port 8000.
+
+Pense à arrêter le Codespace quand tu as fini (menu **Codespaces → Stop Current Codespace**) pour ne pas consommer ton quota.
+
+## Lancer le projet en local
 
 ```bash
 python3 -m venv env
@@ -46,6 +54,7 @@ Les valeurs par défaut conviennent au développement local. En dehors, définis
 | `DJANGO_SECRET_KEY` | clé secrète Django |
 | `DJANGO_DEBUG` | `1` en dev, `0` en production |
 | `DJANGO_ALLOWED_HOSTS` | domaines autorisés, séparés par des virgules |
+| `DJANGO_CSRF_TRUSTED_ORIGINS` | origines HTTPS de confiance pour les formulaires, séparées par des virgules |
 
 ## Stack
 

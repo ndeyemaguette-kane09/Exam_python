@@ -1,0 +1,27 @@
+{
+  "name": "ÉquiTable",
+  "image": "mcr.microsoft.com/devcontainers/python:3.12",
+  "containerEnv": {
+    "DJANGO_ALLOWED_HOSTS": "localhost,127.0.0.1,.app.github.dev",
+    "DJANGO_CSRF_TRUSTED_ORIGINS": "https://*.app.github.dev"
+  },
+  "postCreateCommand": "pip install -r requirements.txt && cd monmenus && python manage.py migrate && python manage.py loaddata donnees_demo",
+  "postAttachCommand": {
+    "serveur": "cd monmenus && python manage.py runserver 0.0.0.0:8000"
+  },
+  "forwardPorts": [8000],
+  "portsAttributes": {
+    "8000": {
+      "label": "ÉquiTable",
+      "onAutoForward": "openBrowser"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": ["ms-python.python", "batisteo.vscode-django"]
+    },
+    "codespaces": {
+      "openFiles": ["README.md"]
+    }
+  }
+}
