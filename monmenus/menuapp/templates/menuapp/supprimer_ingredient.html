@@ -6,7 +6,7 @@
     {% if recettes %}
       <p>Cet ingrédient est utilisé dans {{ recettes|length }} recette{{ recettes|length|pluralize }} :</p>
       <ul>{% for r in recettes %}<li><a href="{% url 'detail_recette' r.id %}">{{ r.nom }}</a></li>{% endfor %}</ul>
-      <p class="text-secondary">Il ne peut pas être supprimé. Pour le marquer en rupture, mets sa quantité à 0.</p>
+      <p class="text-secondary">Suppression impossible. Pour le marquer en rupture, mets sa quantité à 0.</p>
       <div class="d-flex gap-2 mt-4">
         <a href="{% url 'modifier_ingredient' ingredient.id %}" class="btn btn-primary">Modifier la quantité</a>
         <a href="{% url retour %}" class="btn btn-light">Retour</a>

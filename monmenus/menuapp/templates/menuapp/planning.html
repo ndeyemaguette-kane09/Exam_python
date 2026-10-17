@@ -65,10 +65,10 @@
     </div>
     <p class="text-secondary">
       {% if nb_repas %}
-        {{ nb_repas }} repas prévu{{ nb_repas|pluralize }}, budget estimé {{ budget|fcfa }}.
-        {% if not courses %}Ton stock suffit pour toute la semaine.{% endif %}
+        {{ nb_repas }} repas, {{ budget|fcfa }} estimés.
+        {% if not courses %}Rien à acheter.{% endif %}
       {% else %}
-        Ajoute des repas au planning pour obtenir la liste de ce qu'il faut acheter.
+        Aucun repas prévu cette semaine.
       {% endif %}
     </p>
     {% if courses %}
@@ -78,7 +78,7 @@
             <i class="ti ti-{{ c.ingredient.icone }} ico"></i>
             <div class="min-w-0">
               <div class="nom">{{ c.ingredient }}</div>
-              <div class="detail">Il en faut {{ c.besoin|nombre }} {{ c.ingredient.unite }}, tu en as {{ c.ingredient.quantite|nombre }}</div>
+              <div class="detail">Besoin {{ c.besoin|nombre }} {{ c.ingredient.unite }}, en stock {{ c.ingredient.quantite|nombre }} {{ c.ingredient.unite }}</div>
             </div>
             <div class="fin fw-semibold">{{ c.manque|nombre }} {{ c.ingredient.unite }}</div>
           </li>

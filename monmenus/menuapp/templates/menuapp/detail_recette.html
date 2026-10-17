@@ -60,7 +60,7 @@
               <li><span class="nom">{{ ligne.ingredient }}</span><span class="fin">{{ ligne.manque|nombre }} {{ ligne.ingredient.unite }}</span></li>
             {% endfor %}
           </ul>
-          <a target="_blank" rel="noopener" class="btn btn-light btn-sm mt-3 no-print" href="https://api.whatsapp.com/send?text={{ 'Courses pour '|urlencode }}{{ recette.nom|urlencode }}%20%3A%0A{% for ligne in etat.manquants %}-%20{{ ligne.ingredient|urlencode }}%20%3A%20{{ ligne.manque|nombre|urlencode }}%20{{ ligne.ingredient.unite|urlencode }}%0A{% endfor %}"><i class="ti ti-brand-whatsapp"></i>Envoyer la liste</a>
+          <a target="_blank" rel="noopener" class="btn btn-light btn-sm mt-3 no-print" href="https://api.whatsapp.com/send?text={{ 'Courses pour '|urlencode }}{{ recette.nom|urlencode }}%20%3A%0A{% for ligne in etat.manquants %}-%20{{ ligne.ingredient|urlencode }}%20%3A%20{{ ligne.manque|nombre|urlencode }}%20{{ ligne.ingredient.unite|urlencode }}%0A{% endfor %}"><i class="ti ti-brand-whatsapp"></i>Envoyer sur WhatsApp</a>
         </section>
       {% endif %}
 

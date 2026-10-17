@@ -5,9 +5,8 @@
   <div class="titre-page">
     <h1>Bonjour Magui</h1>
     <p class="resume mt-2">
-      Tu as <strong>{{ total_ingredients }} ingrédient{{ total_ingredients|pluralize }}</strong> en stock
-      et <strong>{{ nb_faisables }} recette{{ nb_faisables|pluralize }} sur {{ nb_recettes }}</strong> faisable{{ nb_faisables|pluralize }} tout de suite.
-      {% if ingredients_rupture %}{{ ingredients_rupture|length }} ingrédient{{ ingredients_rupture|length|pluralize }} en rupture.{% endif %}
+      <strong>{{ total_ingredients }}</strong> ingrédient{{ total_ingredients|pluralize }} en stock,
+      <strong>{{ nb_faisables }}</strong> recette{{ nb_faisables|pluralize }} faisable{{ nb_faisables|pluralize }} sur {{ nb_recettes }}.
     </p>
   </div>
 
@@ -21,19 +20,19 @@
               <li>
                 <i class="ti ti-{{ ing.icone }} ico"></i>
                 <div class="min-w-0"><div class="nom">{{ ing }}</div><div class="detail">{{ ing.lieu }}</div></div>
-                <div class="fin"><span class="etat-rupture">Rupture</span><a href="{% url 'modifier_ingredient' ing.id %}" class="small">Mettre à jour</a></div>
+                <div class="fin"><span class="etat-rupture">Rupture</span><a href="{% url 'modifier_ingredient' ing.id %}" class="small">Modifier</a></div>
               </li>
             {% endfor %}
             {% for ing in ingredients_bas %}
               <li>
                 <i class="ti ti-{{ ing.icone }} ico"></i>
                 <div class="min-w-0"><div class="nom">{{ ing }}</div><div class="detail">{{ ing.lieu }}</div></div>
-                <div class="fin"><span class="etat-bas">Il reste {{ ing.quantite|nombre }} {{ ing.unite }}</span><a href="{% url 'modifier_ingredient' ing.id %}" class="small">Mettre à jour</a></div>
+                <div class="fin"><span class="etat-bas">{{ ing.quantite|nombre }} {{ ing.unite }}</span><a href="{% url 'modifier_ingredient' ing.id %}" class="small">Modifier</a></div>
               </li>
             {% endfor %}
           </ul>
         {% else %}
-          <p class="vide">Rien à racheter pour l'instant.</p>
+          <p class="vide">Aucun ingrédient à racheter.</p>
         {% endif %}
       </section>
     </div>
@@ -52,13 +51,13 @@
           </ul>
         {% else %}
           <p class="text-secondary mb-2">Aucun repas prévu aujourd'hui.</p>
-          <a href="{% url 'planning' %}">Planifier la semaine</a>
+          <a href="{% url 'planning' %}">Ouvrir le planning</a>
         {% endif %}
       </section>
 
       {% if suggestion %}
         <section class="section">
-          <h2>Une idée pour ce soir</h2>
+          <h2>Faisable maintenant</h2>
           <article class="recette">
             {% if suggestion.image %}<img src="{{ suggestion.image.url }}" alt="" class="photo">{% endif %}
             <h3><a href="{% url 'detail_recette' suggestion.id %}">{{ suggestion.nom }}</a></h3>
@@ -66,7 +65,6 @@
               <span>{{ suggestion.temps_preparation|duree }}</span>
               <span>{{ suggestion.cout_estime|fcfa }}</span>
             </div>
-            <div class="etat"><span class="etat-ok">Faisable avec ton stock</span></div>
           </article>
         </section>
       {% endif %}

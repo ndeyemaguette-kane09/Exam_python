@@ -4,7 +4,6 @@
 {% block content %}
   <div class="titre-page">
     <h1>Historique</h1>
-    <p>Les repas que tu as cuisinés.</p>
   </div>
 
   <dl class="chiffres">
@@ -38,6 +37,6 @@
       {% endfor %}
     </div>
   {% else %}
-    <p class="vide">Aucun repas pour l'instant. Quand tu valides une recette, elle apparaît ici.</p>
+    <p class="vide">Aucun repas enregistré. Les recettes validées s'affichent ici.</p>
   {% endif %}
 {% endblock %}

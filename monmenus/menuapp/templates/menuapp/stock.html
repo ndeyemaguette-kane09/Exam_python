@@ -5,7 +5,7 @@
   <div class="titre-page d-flex flex-wrap justify-content-between align-items-end gap-3">
     <div>
       <h1>{% if lieu == 'Frigo' %}Frigo{% else %}Placard{% endif %}</h1>
-      <p>{{ ingredients|length }} ingrédient{{ ingredients|length|pluralize }}{% if nb_alertes %}, dont {{ nb_alertes }} à surveiller{% endif %}</p>
+      <p>{{ ingredients|length }} ingrédient{{ ingredients|length|pluralize }}{% if nb_alertes %}, {{ nb_alertes }} en stock bas ou en rupture{% endif %}</p>
     </div>
     <a href="{% if lieu == 'Frigo' %}{% url 'ajouter_ingredient' %}{% else %}{% url 'ajouter_ingredient_placard' %}{% endif %}" class="btn btn-primary"><i class="ti ti-plus"></i>Ajouter un ingrédient</a>
   </div>

@@ -5,7 +5,7 @@
   <div class="titre-page d-flex flex-wrap justify-content-between align-items-end gap-3">
     <div>
       <h1>Que cuisiner ?</h1>
-      <p>{% if mode == 'stock' %}En priorité une recette faisable avec ce que tu as.{% else %}Une recette au hasard, pour changer.{% endif %}</p>
+      <p>{% if mode == 'stock' %}Les recettes faisables avec ton stock passent en premier.{% else %}Tirage parmi toutes les recettes.{% endif %}</p>
     </div>
     <div class="btn-group" role="group" aria-label="Mode de suggestion">
       <a href="?mode=stock" class="btn btn-sm {% if mode == 'stock' %}btn-primary{% else %}btn-light{% endif %}">Selon mon stock</a>
@@ -32,13 +32,13 @@
         <p class="mb-4">{% include 'menuapp/_faisabilite.html' %}</p>
         {% include 'menuapp/_ingredients_recette.html' %}
         <div class="d-flex flex-wrap gap-2 mt-4">
-          <a href="{% url 'confirmer_recette' recette.id %}" class="btn btn-primary">Je cuisine ça</a>
-          <a href="?mode={{ mode }}&exclure={{ recette.id }}" class="btn btn-light">Une autre idée</a>
+          <a href="{% url 'confirmer_recette' recette.id %}" class="btn btn-primary">Cuisiner</a>
+          <a href="?mode={{ mode }}&exclure={{ recette.id }}" class="btn btn-light">Autre suggestion</a>
           <a href="{% url 'detail_recette' recette.id %}" class="btn btn-light">Voir la recette</a>
         </div>
       </div>
     </div>
   {% else %}
-    <p class="vide">Aucune recette pour le moment. <a href="{% url 'creer_recette' %}">Ajoute ta première recette</a>.</p>
+    <p class="vide">Aucune recette. <a href="{% url 'creer_recette' %}">Ajouter une recette</a></p>
   {% endif %}
 {% endblock %}

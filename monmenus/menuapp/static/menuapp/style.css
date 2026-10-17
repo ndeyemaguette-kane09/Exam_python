@@ -73,7 +73,6 @@ a:hover { text-decoration: underline; }
 
 .entete { border-bottom: 1px solid var(--trait); background: var(--blanc); }
 .entete .navbar-brand { font-weight: 800; letter-spacing: -.03em; font-size: 1.2rem; color: var(--encre); }
-.entete .navbar-brand span { color: var(--vert); }
 .entete .nav-link { color: var(--gris); font-weight: 600; padding: 1.15rem .75rem !important; border-bottom: 2px solid transparent; }
 .entete .nav-link:hover { color: var(--encre); }
 .entete .nav-link.active { color: var(--encre); border-bottom-color: var(--vert); }
@@ -172,7 +171,6 @@ a:hover { text-decoration: underline; }
 .vide { color: var(--gris); padding: 2rem 0; }
 
 .pied { border-top: 1px solid var(--trait); color: var(--gris); font-size: .88rem; padding: 1.5rem 0 2rem; }
-.pied strong { color: var(--encre); font-weight: 700; }
 
 .min-w-0 { min-width: 0; }
 

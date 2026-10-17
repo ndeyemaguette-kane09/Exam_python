@@ -4,7 +4,7 @@ Application web de gestion de cuisine : suivi du stock (frigo et placard), recet
 
 Projet commencé pour l'examen de Python et repris depuis.
 
-Auteure : Ndeye Maguette Kane
+Ndeye Maguette Kane, 2025
 
 ## Fonctionnalités
 

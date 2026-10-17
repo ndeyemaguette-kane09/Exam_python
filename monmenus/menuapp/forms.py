@@ -24,7 +24,7 @@ class IngredientForm(forms.ModelForm):
             'lieu': 'Lieu de stockage',
         }
         help_texts = {
-            'seuil_alerte': "En dessous de cette quantité, l'accueil te prévient avant la rupture.",
+            'seuil_alerte': "Alerte sur l'accueil en dessous de cette quantité.",
         }
         widgets = {
             'nom': forms.TextInput(attrs={'class': 'form-control'}),

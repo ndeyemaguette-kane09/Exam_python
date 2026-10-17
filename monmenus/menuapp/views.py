@@ -112,7 +112,7 @@ def supprimer_ingredient(request, id):
         try:
             ingredient.delete()
         except ProtectedError:
-            messages.error(request, f"{ingredient} est utilisé dans des recettes : mets plutôt sa quantité à 0.")
+            messages.error(request, f"{ingredient} est utilisé dans une recette. Mets sa quantité à 0 pour le marquer en rupture.")
             return redirect(retour)
         messages.success(request, f"{ingredient} supprimé")
         return redirect(retour)
@@ -308,7 +308,7 @@ def confirmer_recette(request, recette_id):
                     ing.save(update_fields=['quantite'])
                 # ➜ Enregistre l’action dans Historique ✅
                 Historique.objects.create(recette=recette)
-            messages.success(request, f"{recette.nom} validée, ton stock est à jour")
+            messages.success(request, f"{recette.nom} : stock mis à jour")
             return redirect('historique')
 
     return render(request, 'menuapp/confirmer_recette.html', {
@@ -441,7 +441,7 @@ def planifier_repas(request):
         messages.success(request, f"{repas.recette} prévue pour le {repas.get_moment_display().lower()} du {repas.date:%d/%m}")
         semaine = debut_semaine(repas.date).isoformat()
     else:
-        messages.error(request, "Impossible de planifier ce repas : vérifie la date, le moment et la recette.")
+        messages.error(request, "Repas non planifié : date, moment ou recette manquant.")
         semaine = ''
     if request.POST.get('next'):
         return redirection_suivante(request, 'planning')

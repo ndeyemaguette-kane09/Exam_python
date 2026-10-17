@@ -1,7 +1,7 @@
 {% if etat.faisable %}
-  <span class="etat-ok">Faisable avec ton stock</span>
+  <span class="etat-ok">Tous les ingrédients en stock</span>
 {% elif etat.total == 0 %}
   <span class="etat-manque">Aucun ingrédient renseigné</span>
 {% else %}
-  <span class="etat-manque">Il manque {% for ligne in etat.manquants %}{% if not forloop.first %}{% if forloop.last %} et {% else %}, {% endif %}{% endif %}{{ ligne.ingredient|lower }}{% endfor %}</span>
+  <span class="etat-manque">Manque : {% for ligne in etat.manquants %}{% if not forloop.first %}, {% endif %}{{ ligne.ingredient|lower }}{% endfor %}</span>
 {% endif %}

@@ -3,11 +3,10 @@
 {% block content %}
   <div class="titre-page">
     <h1>{% if recette %}Modifier {{ recette.nom }}{% else %}Nouvelle recette{% endif %}</h1>
-    <p>Les quantités servent à vérifier ton stock et à préparer la liste de courses.</p>
   </div>
 
   {% if aucun_ingredient %}
-    <div class="alert alert-light border">Ajoute d'abord des ingrédients dans ton <a href="{% url 'frigo' %}">frigo</a> ou ton <a href="{% url 'placard' %}">placard</a>.</div>
+    <div class="alert alert-light border">Aucun ingrédient en stock. Commence par le <a href="{% url 'frigo' %}">frigo</a> ou le <a href="{% url 'placard' %}">placard</a>.</div>
   {% endif %}
 
   <form method="post" enctype="multipart/form-data" novalidate>
@@ -35,7 +34,7 @@
 
       <div class="col-lg-6">
         <h2 class="titre-section">Ingrédients</h2>
-        <p class="text-secondary small">Quantité dans l'unité de ton stock.</p>
+        <p class="text-secondary small">Quantités dans l'unité du stock.</p>
         {{ lignes.management_form }}
         {% for error in lignes.non_form_errors %}<div class="alert alert-danger py-2">{{ error }}</div>{% endfor %}
         <div id="lignes">

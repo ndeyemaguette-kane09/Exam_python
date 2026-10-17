@@ -3,7 +3,7 @@
 {% block content %}
   <div class="titre-page">
     <h1>Favoris</h1>
-    <p>{% if favoris %}{{ favoris|length }} recette{{ favoris|length|pluralize }}{% else %}Tes recettes préférées, à portée de main{% endif %}</p>
+    {% if favoris %}<p>{{ favoris|length }} recette{{ favoris|length|pluralize }}</p>{% endif %}
   </div>
 
   {% if favoris %}
@@ -15,6 +15,6 @@
       {% endfor %}
     </div>
   {% else %}
-    <p class="vide">Aucun favori pour l'instant. Touche le cœur sur une recette pour l'ajouter ici. <a href="{% url 'recettes' %}">Voir les recettes</a></p>
+    <p class="vide">Aucun favori. <a href="{% url 'recettes' %}">Voir les recettes</a></p>
   {% endif %}
 {% endblock %}
