@@ -1,41 +1,47 @@
 {% extends 'menuapp/base.html' %}
+{% load equitable %}
+{% block titre %}Que cuisiner ?{% endblock %}
 {% block content %}
-<div class="container my-5">
-  {% if recette %}
-    <div class="card shadow rounded p-4 bg-white mb-4">
-      {% if recette.image %}
-        <img src="{{ recette.image.url }}" alt="Photo recette" class="card-img-top img-fluid mb-3 rounded" style="max-height: 400px; object-fit: cover;">
-      {% endif %}
-      <div class="card-body">
-        <h2 class="card-title">{{ recette.nom }}</h2>
-        <p><strong>Coût estimé :</strong> {{ recette.cout_estime }} Fcfa</p>
-        <p><strong>Temps de préparation :</strong> {{ recette.temps_preparation }} min</p>
-        <h4>Ingrédients :</h4>
-        <ul class="list-group mb-3">
-          {% for ing in recette.ingredients.all %}
-            <li class="list-group-item">{{ ing.nom }} ({{ ing.quantite }} {{ ing.unite }})</li>
-          {% endfor %}
-        </ul>
-        <h4>Instructions :</h4>
-        <p>{{ recette.instructions|linebreaksbr }}</p>
+  <div class="page-titre">
+    <div>
+      <h1><i class="ti ti-arrows-shuffle"></i>Que cuisiner ?</h1>
+      <p>{% if mode == 'stock' %}Une recette choisie en priorité avec ce que tu as déjà.{% else %}Une recette tirée au hasard, pour changer.{% endif %}</p>
+    </div>
+    <div class="btn-group" role="group" aria-label="Mode de suggestion">
+      <a href="?mode=stock" class="btn {% if mode == 'stock' %}btn-success{% else %}btn-outline-success{% endif %}"><i class="ti ti-fridge"></i>Selon mon stock</a>
+      <a href="?mode=hasard" class="btn {% if mode == 'hasard' %}btn-success{% else %}btn-outline-success{% endif %}"><i class="ti ti-arrows-shuffle"></i>Au hasard</a>
+    </div>
+  </div>
 
-        <div class="d-flex flex-wrap gap-2 mb-3">
-          <a href="{% url 'export_pdf' recette.id %}" class="btn btn-warning">
-            📄 Exporter en PDF
-          </a>
-          <a href="{% url 'generer_menu' %}" class="btn btn-secondary">
-            🔀 Une autre recette
-          </a>
-          <a href="{% url 'confirmer_recette' recette.id %}" class="btn btn-success">
-            ✅ Choisir cette recette
-          </a>
+  {% if recette %}
+    <div class="carte overflow-hidden">
+      <div class="row g-0">
+        <div class="col-lg-5">
+          {% if recette.image %}
+            <img src="{{ recette.image.url }}" alt="{{ recette.nom }}" class="w-100 h-100" style="object-fit: cover; min-height: 280px">
+          {% else %}
+            <div class="recette-photo-vide h-100" style="min-height: 280px; background: var(--eq-vert-clair)"><i class="ti ti-tools-kitchen-2"></i></div>
+          {% endif %}
+        </div>
+        <div class="col-lg-7 p-4 p-lg-5">
+          <div class="mb-2">{% include 'menuapp/_faisabilite.html' %}</div>
+          <h2 class="fw-bold">{{ recette.nom }}</h2>
+          <div class="meta mb-4">
+            <span><i class="ti ti-clock"></i> {{ recette.temps_preparation|duree }}</span>
+            <span><i class="ti ti-coin"></i> {{ recette.cout_estime|fcfa }}</span>
+            <span><i class="ti ti-users"></i> {{ recette.portions }} portion{{ recette.portions|pluralize }}</span>
+          </div>
+          {% include 'menuapp/_ingredients_recette.html' %}
+          <div class="d-flex flex-wrap gap-2 mt-4">
+            <a href="{% url 'confirmer_recette' recette.id %}" class="btn btn-success"><i class="ti ti-chef-hat"></i>Je cuisine ça</a>
+            <a href="?mode={{ mode }}&exclure={{ recette.id }}" class="btn btn-outline-secondary"><i class="ti ti-refresh"></i>Une autre</a>
+            <a href="{% url 'detail_recette' recette.id %}" class="btn btn-outline-secondary"><i class="ti ti-book-2"></i>Voir la recette</a>
+            <a href="{% url 'export_pdf' recette.id %}" class="btn btn-outline-secondary btn-icone" title="PDF" aria-label="PDF"><i class="ti ti-file-type-pdf"></i></a>
+          </div>
         </div>
       </div>
     </div>
   {% else %}
-    <p>Aucune recette trouvée !</p>
+    <div class="carte vide"><i class="ti ti-mood-empty"></i>Aucune recette pour le moment. <a href="{% url 'creer_recette' %}">Ajoute ta première recette</a>.</div>
   {% endif %}
-
-  <a href="{% url 'accueil' %}" class="btn btn-outline-secondary">⬅️ Retour accueil</a>
-</div>
 {% endblock %}

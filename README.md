@@ -6,12 +6,16 @@ Projet Django réalisé à l'origine pour l'examen de Python, repris et amélior
 
 ## Fonctionnalités
 
-- **Frigo & Placard** : ajout, modification, suppression d'ingrédients, avec catégorie, unité et lieu de stockage
-- **Ruptures de stock** signalées sur l'accueil et sur les fiches
-- **Recettes** avec photo, coût estimé (FCFA) et temps de préparation
-- **Générer un menu** : une recette tirée au hasard
-- **Cuisiner une recette** : tu indiques les quantités utilisées, le stock est décrémenté et la recette part dans l'historique
-- **Favoris**, **historique** et **export PDF** d'une recette
+- **Frigo & Placard** : ingrédients rangés par catégorie, avec unité, lieu et seuil de stock bas
+- **Alertes** : l'accueil signale ce qui est en rupture et ce qui va bientôt manquer
+- **Recettes** avec photo, coût (FCFA), temps, portions et quantités par ingrédient ; ajout, modification et suppression depuis l'appli
+- **Faisabilité** : chaque recette indique si elle est faisable avec ton stock, et ce qu'il manque
+- **Recherche et filtres** par nom, ingrédient, budget, temps ou « faisable maintenant »
+- **Que cuisiner ?** : une suggestion en priorité avec ce que tu as déjà, ou au hasard
+- **Cuisiner une recette** : les quantités sont pré-remplies, le stock est décrémenté et le repas part dans l'historique
+- **Planning de la semaine** (déjeuner et dîner) avec liste de courses globale et budget estimé
+- **Historique** en tableau de bord : repas et budget du mois, recette la plus cuisinée, chronologie
+- **Favoris**, **export PDF** mis en page et partage WhatsApp de la liste de courses
 
 ## Tester sans rien installer
 
@@ -58,4 +62,4 @@ Les valeurs par défaut conviennent au développement local. En dehors, définis
 
 ## Stack
 
-Django 5.2 · SQLite · Bootstrap 5 · xhtml2pdf
+Django 5.2 · SQLite · Bootstrap 5 · Tabler Icons · xhtml2pdf

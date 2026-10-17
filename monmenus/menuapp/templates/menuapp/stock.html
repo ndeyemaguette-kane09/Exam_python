@@ -1,28 +1,45 @@
 {% extends 'menuapp/base.html' %}
+{% load equitable %}
+{% block titre %}{% if lieu == 'Frigo' %}Mon frigo{% else %}Mon placard{% endif %}{% endblock %}
 {% block content %}
-  <h2 class="mb-4">{% if lieu == 'Frigo' %}Mon Frigo 🧊{% else %}Mon Placard 🗄️{% endif %}</h2>
-
-  <div class="row">
-    {% for ingredient in ingredients %}
-      <div class="col-md-3 mb-3">
-        <div class="card h-100 {% if ingredient.en_rupture %}border-danger{% endif %}">
-          <div class="card-body">
-            <h5 class="card-title">{{ ingredient.emoji }} {{ ingredient.nom }}</h5>
-            <p class="card-text">
-              Quantité : {{ ingredient.quantite }} {{ ingredient.unite }}
-              {% if ingredient.en_rupture %}<span class="badge bg-danger">Rupture</span>{% endif %}<br>
-              Catégorie : {{ ingredient.categorie|default:"—" }}
-            </p>
-            <a href="{% url 'modifier_ingredient' ingredient.id %}" class="btn btn-warning btn-sm">Modifier</a>
-            <a href="{% url 'supprimer_ingredient' ingredient.id %}" class="btn btn-danger btn-sm">Supprimer</a>
-          </div>
-        </div>
-      </div>
-    {% empty %}
-      <p>Aucun ingrédient pour le moment.</p>
-    {% endfor %}
+  <div class="page-titre">
+    <div>
+      <h1><i class="ti {% if lieu == 'Frigo' %}ti-fridge{% else %}ti-archive{% endif %}"></i>{% if lieu == 'Frigo' %}Mon frigo{% else %}Mon placard{% endif %}</h1>
+      <p>{{ ingredients|length }} ingrédient{{ ingredients|length|pluralize }}{% if nb_alertes %} · {{ nb_alertes }} à surveiller{% endif %}</p>
+    </div>
+    <a href="{% if lieu == 'Frigo' %}{% url 'ajouter_ingredient' %}{% else %}{% url 'ajouter_ingredient_placard' %}{% endif %}" class="btn btn-success"><i class="ti ti-plus"></i>Ajouter un ingrédient</a>
   </div>
 
-  <a href="{% if lieu == 'Frigo' %}{% url 'ajouter_ingredient' %}{% else %}{% url 'ajouter_ingredient_placard' %}{% endif %}" class="btn btn-success">Ajouter un ingrédient</a>
-  <a href="{% url 'accueil' %}" class="btn btn-secondary">Retour accueil</a>
+  {% if ingredients %}
+    {% regroup ingredients by categorie as categories %}
+    {% for categorie in categories %}
+      <h2 class="h6 text-secondary text-uppercase fw-bold mt-4 mb-3" style="letter-spacing: .05em">{{ categorie.grouper|default:"Sans catégorie" }} <span class="fw-normal">· {{ categorie.list|length }}</span></h2>
+      <div class="row g-3">
+        {% for ingredient in categorie.list %}
+          <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+            <div class="carte p-3 h-100 d-flex flex-column gap-3">
+              <div class="d-flex align-items-center gap-3">
+                <span class="icone-cat {{ ingredient.statut }}"><i class="ti ti-{{ ingredient.icone }}"></i></span>
+                <div class="min-w-0 fw-bold text-truncate">{{ ingredient }}</div>
+              </div>
+              <div class="d-flex align-items-center justify-content-between">
+                <span class="fs-5 fw-semibold">{{ ingredient.quantite|nombre }} <small class="fs-6 text-secondary fw-normal">{{ ingredient.unite }}</small></span>
+                {% if ingredient.statut == 'rupture' %}
+                  <span class="pastille rouge">Rupture</span>
+                {% elif ingredient.statut == 'bas' %}
+                  <span class="pastille orange">Stock bas</span>
+                {% endif %}
+              </div>
+              <div class="d-flex gap-2 mt-auto">
+                <a href="{% url 'modifier_ingredient' ingredient.id %}" class="btn btn-outline-secondary btn-sm flex-fill"><i class="ti ti-pencil"></i>Modifier</a>
+                <a href="{% url 'supprimer_ingredient' ingredient.id %}" class="btn btn-outline-danger btn-sm btn-icone" title="Supprimer" aria-label="Supprimer"><i class="ti ti-trash"></i></a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endfor %}
+  {% else %}
+    <div class="carte vide"><i class="ti ti-box"></i>Aucun ingrédient pour le moment.</div>
+  {% endif %}
 {% endblock %}

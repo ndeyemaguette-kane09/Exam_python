@@ -1,29 +1,26 @@
 {% extends 'menuapp/base.html' %}
+{% block titre %}Mes favoris{% endblock %}
 {% block content %}
-<div class="container mt-4">
-  <h2><i class="bi bi-heart-fill text-danger"></i> Mes Recettes Préférées</h2>
+  <div class="page-titre">
+    <div>
+      <h1><i class="ti ti-heart"></i>Mes favoris</h1>
+      <p>{% if favoris %}{{ favoris|length }} recette{{ favoris|length|pluralize }} que tu adores{% else %}Tes recettes préférées, à portée de main{% endif %}</p>
+    </div>
+  </div>
+
   {% if favoris %}
-    <div class="row">
+    <div class="row g-4">
       {% for fav in favoris %}
-        <div class="col-md-4 mb-4">
-          <div class="card h-100 shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title">
-                <i class="bi bi-star-fill text-warning"></i> {{ fav.recette.nom }}
-              </h5>
-              <p class="card-text">
-                Ajoutée le {{ fav.date_ajout|date:"d/m/Y H:i" }}
-              </p>
-              <a href="{% url 'detail_recette' fav.recette.id %}" class="btn btn-outline-primary btn-sm">
-                Voir la recette
-              </a>
-            </div>
-          </div>
+        <div class="col-12 col-sm-6 col-lg-4">
+          {% include 'menuapp/_carte_recette.html' with recette=fav.recette etat=fav.etat est_favori=True %}
         </div>
       {% endfor %}
     </div>
   {% else %}
-    <p class="text-muted">Aucune recette ajoutée en favoris pour le moment.</p>
+    <div class="carte vide">
+      <i class="ti ti-heart"></i>
+      <p class="mb-3">Aucune recette en favori pour le moment.<br>Clique sur le cœur d'une recette pour la retrouver ici.</p>
+      <a href="{% url 'recettes' %}" class="btn btn-success"><i class="ti ti-book-2"></i>Parcourir les recettes</a>
+    </div>
   {% endif %}
-</div>
 {% endblock %}

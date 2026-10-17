@@ -1,65 +1,83 @@
 {% extends 'menuapp/base.html' %}
+{% load equitable %}
+{% block titre %}{{ recette.nom }}{% endblock %}
 {% block content %}
-<div class="container my-5">
-  <div class="row">
-    <div class="col-md-8 offset-md-2">
-      <div class="card shadow rounded p-4 bg-white">
+  <a href="{% url 'recettes' %}" class="btn btn-link text-secondary px-0 mb-2 no-print"><i class="ti ti-arrow-left"></i>Toutes les recettes</a>
+
+  <div class="row g-4">
+    <div class="col-lg-7">
+      <div class="position-relative mb-3">
         {% if recette.image %}
-          <img src="{{ recette.image.url }}" alt="{{ recette.nom }}" class="card-img-top img-fluid mb-3 rounded" style="max-height: 400px; object-fit: cover;">
+          <img src="{{ recette.image.url }}" alt="{{ recette.nom }}" class="recette-photo-grande">
+        {% else %}
+          <div class="recette-photo recette-photo-vide rounded-4" style="aspect-ratio: 16/9"><i class="ti ti-tools-kitchen-2"></i></div>
         {% endif %}
-        <form method="post" action="{% url 'basculer_favori' recette.id %}" class="mb-3">
-          {% csrf_token %}
-          {% if est_favori %}
-            <button type="submit" class="btn btn-danger">
-              <i class="bi bi-heart-fill"></i> Retirer des favoris
-            </button>
-          {% else %}
-            <button type="submit" class="btn btn-outline-danger">
-              <i class="bi bi-heart"></i> Ajouter aux favoris
-            </button>
-          {% endif %}
-        </form>
-        <h2 class="card-title">{{ recette.nom }}</h2>
-        <p><strong>Coût estimé :</strong> {{ recette.cout_estime }} Fcfa</p>
-        <p><strong>Temps de préparation :</strong> {{ recette.temps_preparation }} min</p>
+        {% include 'menuapp/_favori.html' with classe='position-absolute top-0 end-0 m-3' %}
+      </div>
 
-        <h4>Ingrédients :</h4>
-        <ul class="list-group mb-3">
-          {% for ing in recette.ingredients.all %}
-            <li class="list-group-item">
-              {{ ing.nom }} : {{ ing.quantite }} {{ ing.unite }}
-              {% if ing.en_rupture %}
-                <span class="badge bg-danger">Rupture de stock</span>
-              {% endif %}
-            </li>
-          {% endfor %}
-        </ul>
+      <h1 class="fw-bold h2 mb-2">{{ recette.nom }}</h1>
+      <div class="meta mb-3">
+        <span><i class="ti ti-clock"></i> {{ recette.temps_preparation|duree }}</span>
+        <span><i class="ti ti-coin"></i> {{ recette.cout_estime|fcfa }}</span>
+        <span><i class="ti ti-users"></i> {{ recette.portions }} portion{{ recette.portions|pluralize }}</span>
+        {% if nb_cuisinee %}<span><i class="ti ti-history"></i> Cuisinée {{ nb_cuisinee }} fois</span>{% endif %}
+      </div>
 
-        <h4>Instructions :</h4>
-        <p>{{ recette.instructions|linebreaksbr }}</p>
-
-        <h5><i class="bi bi-share"></i> Partager cette recette :</h5>
-        <div class="d-flex gap-2 mb-3">
-          <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank" class="btn btn-primary btn-sm">
-            <i class="bi bi-facebook"></i> Facebook
-          </a>
-          <a href="https://api.whatsapp.com/send?text=Regarde cette recette ! {{ request.build_absolute_uri }}" target="_blank" class="btn btn-success btn-sm">
-            <i class="bi bi-whatsapp"></i> WhatsApp
-          </a>
-          <a href="https://twitter.com/intent/tweet?text=Regarde cette recette !&url={{ request.build_absolute_uri }}" target="_blank" class="btn btn-info btn-sm">
-            <i class="bi bi-twitter-x"></i> Twitter
-          </a>
+      <div class="d-flex flex-wrap gap-2 mb-4 no-print">
+        <a href="{% url 'confirmer_recette' recette.id %}" class="btn btn-success"><i class="ti ti-chef-hat"></i>Cuisiner cette recette</a>
+        <a href="{% url 'export_pdf' recette.id %}" class="btn btn-outline-secondary"><i class="ti ti-file-type-pdf"></i>PDF</a>
+        <div class="dropdown">
+          <button class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="ti ti-share"></i>Partager</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" target="_blank" rel="noopener" href="https://api.whatsapp.com/send?text={{ recette.nom|urlencode }}%20{{ request.build_absolute_uri|urlencode }}"><i class="ti ti-brand-whatsapp me-2"></i>WhatsApp</a></li>
+            <li><a class="dropdown-item" target="_blank" rel="noopener" href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri|urlencode }}"><i class="ti ti-brand-facebook me-2"></i>Facebook</a></li>
+            <li><a class="dropdown-item" target="_blank" rel="noopener" href="https://twitter.com/intent/tweet?text={{ recette.nom|urlencode }}&url={{ request.build_absolute_uri|urlencode }}"><i class="ti ti-brand-x me-2"></i>X</a></li>
+          </ul>
         </div>
-
-
-
-        <div class="d-flex justify-content-between">
-          <a href="{% url 'recettes' %}" class="btn btn-secondary">⬅️ Retour à la liste</a>
-          <a href="{% url 'confirmer_recette' recette.id %}" class="btn btn-success">✅ Cuisiner cette recette</a>
-          <a href="{% url 'export_pdf' recette.id %}" class="btn btn-warning">📄 Exporter en PDF</a>
+        <div class="dropdown ms-auto">
+          <button class="btn btn-outline-secondary btn-icone" data-bs-toggle="dropdown" aria-label="Plus d'actions"><i class="ti ti-dots"></i></button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="{% url 'modifier_recette' recette.id %}"><i class="ti ti-pencil me-2"></i>Modifier</a></li>
+            <li><a class="dropdown-item text-danger" href="{% url 'supprimer_recette' recette.id %}"><i class="ti ti-trash me-2"></i>Supprimer</a></li>
+          </ul>
         </div>
       </div>
+
+      {% include 'menuapp/_carte_ingredients.html' with classe='d-lg-none' %}
+
+      <div class="carte p-4">
+        <h2 class="h5 fw-bold mb-3">Préparation</h2>
+        <ol class="etapes">
+          {% for etape in recette.etapes %}<li>{{ etape }}</li>{% empty %}<li>Aucune étape renseignée.</li>{% endfor %}
+        </ol>
+      </div>
+    </div>
+
+    <div class="col-lg-5">
+      {% include 'menuapp/_carte_ingredients.html' with classe='d-none d-lg-block' %}
+
+      {% if etat.manquants %}
+        <div class="carte p-4 mb-4">
+          <h2 class="h5 fw-bold mb-3 d-flex align-items-center gap-2"><i class="ti ti-shopping-cart text-success"></i>Liste de courses</h2>
+          <ul class="list-unstyled mb-3">
+            {% for ligne in etat.manquants %}
+              <li class="d-flex justify-content-between py-1"><span>{{ ligne.ingredient }}</span><strong>{{ ligne.manque|nombre }} {{ ligne.ingredient.unite }}</strong></li>
+            {% endfor %}
+          </ul>
+          <a target="_blank" rel="noopener" class="btn btn-outline-success btn-sm no-print" href="https://api.whatsapp.com/send?text={{ 'Courses pour '|urlencode }}{{ recette.nom|urlencode }}%20%3A%0A{% for ligne in etat.manquants %}-%20{{ ligne.ingredient|urlencode }}%20%3A%20{{ ligne.manque|nombre|urlencode }}%20{{ ligne.ingredient.unite|urlencode }}%0A{% endfor %}"><i class="ti ti-brand-whatsapp"></i>Envoyer la liste</a>
+        </div>
+      {% endif %}
+
+      <form method="post" action="{% url 'planifier_repas' %}" class="carte p-4 no-print">
+        {% csrf_token %}
+        <input type="hidden" name="recette" value="{{ recette.id }}">
+        <h2 class="h5 fw-bold mb-3 d-flex align-items-center gap-2"><i class="ti ti-calendar-plus text-success"></i>Ajouter au planning</h2>
+        <div class="row g-2">
+          <div class="col-7">{{ repas_form.date }}</div>
+          <div class="col-5">{{ repas_form.moment }}</div>
+        </div>
+        <button type="submit" class="btn btn-outline-success btn-sm mt-3"><i class="ti ti-check"></i>Planifier</button>
+      </form>
     </div>
   </div>
-</div>
 {% endblock %}

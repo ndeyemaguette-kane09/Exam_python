@@ -1,18 +1,31 @@
 {% extends 'menuapp/base.html' %}
+{% block titre %}{{ titre }}{% endblock %}
 {% block content %}
-  <h2 class="mb-4">{{ titre }}</h2>
-  <form method="POST" novalidate>
-    {% csrf_token %}
-    {% for field in form %}
-      <div class="mb-3">
-        <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
-        {{ field }}
-        {% for error in field.errors %}
-          <div class="text-danger small">{{ error }}</div>
-        {% endfor %}
+  <div class="row justify-content-center">
+    <div class="col-lg-7">
+      <div class="page-titre">
+        <div>
+          <h1><i class="ti ti-basket"></i>{{ titre }}</h1>
+          {% if sous_titre %}<p>{{ sous_titre }}</p>{% endif %}
+        </div>
       </div>
-    {% endfor %}
-    <button type="submit" class="btn btn-primary">Enregistrer</button>
-    <a href="{% url retour %}" class="btn btn-secondary">Annuler</a>
-  </form>
+      <form method="POST" novalidate class="carte p-4">
+        {% csrf_token %}
+        <div class="row g-3">
+          {% for field in form %}
+            <div class="{% if field.name == 'nom' %}col-12{% else %}col-sm-6{% endif %}">
+              <label for="{{ field.id_for_label }}" class="form-label fw-semibold">{{ field.label }}</label>
+              {{ field }}
+              {% if field.help_text %}<div class="form-text">{{ field.help_text }}</div>{% endif %}
+              {% for error in field.errors %}<div class="text-danger small mt-1">{{ error }}</div>{% endfor %}
+            </div>
+          {% endfor %}
+        </div>
+        <div class="d-flex gap-2 mt-4">
+          <button type="submit" class="btn btn-success"><i class="ti ti-check"></i>Enregistrer</button>
+          <a href="{% url retour %}" class="btn btn-outline-secondary">Annuler</a>
+        </div>
+      </form>
+    </div>
+  </div>
 {% endblock %}

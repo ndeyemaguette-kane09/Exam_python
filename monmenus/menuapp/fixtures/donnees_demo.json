@@ -7,7 +7,8 @@
     "quantite": 500.0,
     "unite": "g",
     "categorie": "Viandes",
-    "lieu": "Frigo"
+    "lieu": "Frigo",
+    "seuil_alerte": 100.0
   }
 },
 {
@@ -18,7 +19,8 @@
     "quantite": 900.0,
     "unite": "g",
     "categorie": "Riz",
-    "lieu": "Placard"
+    "lieu": "Placard",
+    "seuil_alerte": 100.0
   }
 },
 {
@@ -29,7 +31,8 @@
     "quantite": 500.0,
     "unite": "g",
     "categorie": "Pâtes",
-    "lieu": "Placard"
+    "lieu": "Placard",
+    "seuil_alerte": 100.0
   }
 },
 {
@@ -40,7 +43,8 @@
     "quantite": 1.6,
     "unite": "L",
     "categorie": "Huiles & Vinaigres",
-    "lieu": "Placard"
+    "lieu": "Placard",
+    "seuil_alerte": 0.25
   }
 },
 {
@@ -51,7 +55,8 @@
     "quantite": 50.0,
     "unite": "g",
     "categorie": "Épices",
-    "lieu": "Placard"
+    "lieu": "Placard",
+    "seuil_alerte": 10.0
   }
 },
 {
@@ -62,7 +67,8 @@
     "quantite": 42.0,
     "unite": "g",
     "categorie": "Épices",
-    "lieu": "Placard"
+    "lieu": "Placard",
+    "seuil_alerte": 10.0
   }
 },
 {
@@ -73,7 +79,8 @@
     "quantite": 11.0,
     "unite": "pieces",
     "categorie": "Œufs",
-    "lieu": "Frigo"
+    "lieu": "Frigo",
+    "seuil_alerte": 1.0
   }
 },
 {
@@ -84,7 +91,8 @@
     "quantite": 6.0,
     "unite": "g",
     "categorie": "Épices",
-    "lieu": "Placard"
+    "lieu": "Placard",
+    "seuil_alerte": 10.0
   }
 },
 {
@@ -95,7 +103,8 @@
     "quantite": 45.0,
     "unite": "g",
     "categorie": "Épices",
-    "lieu": "Placard"
+    "lieu": "Placard",
+    "seuil_alerte": 10.0
   }
 },
 {
@@ -106,7 +115,8 @@
     "quantite": 1.0,
     "unite": "L",
     "categorie": "Produits laitiers",
-    "lieu": "Frigo"
+    "lieu": "Frigo",
+    "seuil_alerte": 0.25
   }
 },
 {
@@ -117,7 +127,8 @@
     "quantite": 950.0,
     "unite": "g",
     "categorie": "Autre",
-    "lieu": "Placard"
+    "lieu": "Placard",
+    "seuil_alerte": 100.0
   }
 },
 {
@@ -128,7 +139,8 @@
     "quantite": 0.0,
     "unite": "g",
     "categorie": "",
-    "lieu": "Placard"
+    "lieu": "Placard",
+    "seuil_alerte": 100.0
   }
 },
 {
@@ -139,7 +151,8 @@
     "quantite": 4.0,
     "unite": "pieces",
     "categorie": "Viandes",
-    "lieu": "Frigo"
+    "lieu": "Frigo",
+    "seuil_alerte": 1.0
   }
 },
 {
@@ -150,7 +163,8 @@
     "quantite": 200.0,
     "unite": "g",
     "categorie": "Légumes frais",
-    "lieu": "Frigo"
+    "lieu": "Frigo",
+    "seuil_alerte": 100.0
   }
 },
 {
@@ -161,7 +175,8 @@
     "quantite": 3.0,
     "unite": "pieces",
     "categorie": "Viandes",
-    "lieu": "Frigo"
+    "lieu": "Frigo",
+    "seuil_alerte": 1.0
   }
 },
 {
@@ -172,7 +187,8 @@
     "quantite": 400.0,
     "unite": "g",
     "categorie": "Légumes frais",
-    "lieu": "Placard"
+    "lieu": "Placard",
+    "seuil_alerte": 100.0
   }
 },
 {
@@ -183,7 +199,8 @@
     "quantite": 200.0,
     "unite": "g",
     "categorie": "Produits laitiers",
-    "lieu": "Frigo"
+    "lieu": "Frigo",
+    "seuil_alerte": 100.0
   }
 },
 {
@@ -194,7 +211,8 @@
     "quantite": 1.0,
     "unite": "pieces",
     "categorie": "Poissons",
-    "lieu": "Frigo"
+    "lieu": "Frigo",
+    "seuil_alerte": 1.0
   }
 },
 {
@@ -205,7 +223,8 @@
     "quantite": 23.0,
     "unite": "pieces",
     "categorie": "Épices",
-    "lieu": "Placard"
+    "lieu": "Placard",
+    "seuil_alerte": 1.0
   }
 },
 {
@@ -216,7 +235,8 @@
     "quantite": 0.5,
     "unite": "pieces",
     "categorie": "Légumes frais",
-    "lieu": "Frigo"
+    "lieu": "Frigo",
+    "seuil_alerte": 1.0
   }
 },
 {
@@ -227,7 +247,8 @@
     "quantite": 90.0,
     "unite": "g",
     "categorie": "Conserves",
-    "lieu": "Frigo"
+    "lieu": "Frigo",
+    "seuil_alerte": 100.0
   }
 },
 {
@@ -238,7 +259,8 @@
     "quantite": 14.0,
     "unite": "g",
     "categorie": "Conserves",
-    "lieu": "Frigo"
+    "lieu": "Frigo",
+    "seuil_alerte": 100.0
   }
 },
 {
@@ -249,7 +271,8 @@
     "quantite": 400.0,
     "unite": "g",
     "categorie": "Pâtes",
-    "lieu": "Placard"
+    "lieu": "Placard",
+    "seuil_alerte": 100.0
   }
 },
 {
@@ -260,7 +283,8 @@
     "quantite": 150.0,
     "unite": "g",
     "categorie": "Fruits frais",
-    "lieu": "Frigo"
+    "lieu": "Frigo",
+    "seuil_alerte": 100.0
   }
 },
 {
@@ -271,7 +295,8 @@
     "quantite": 3.0,
     "unite": "pieces",
     "categorie": "Légumes frais",
-    "lieu": "Frigo"
+    "lieu": "Frigo",
+    "seuil_alerte": 1.0
   }
 },
 {
@@ -282,7 +307,8 @@
     "quantite": 100.0,
     "unite": "g",
     "categorie": "Céréales",
-    "lieu": "Placard"
+    "lieu": "Placard",
+    "seuil_alerte": 100.0
   }
 },
 {
@@ -293,7 +319,8 @@
     "quantite": 3.0,
     "unite": "pieces",
     "categorie": "Légumes frais",
-    "lieu": "Frigo"
+    "lieu": "Frigo",
+    "seuil_alerte": 1.0
   }
 },
 {
@@ -304,7 +331,8 @@
     "quantite": 2.0,
     "unite": "pieces",
     "categorie": "Légumes frais",
-    "lieu": "Frigo"
+    "lieu": "Frigo",
+    "seuil_alerte": 1.0
   }
 },
 {
@@ -315,7 +343,8 @@
     "quantite": 2.0,
     "unite": "boites",
     "categorie": "Conserves",
-    "lieu": "Placard"
+    "lieu": "Placard",
+    "seuil_alerte": 1.0
   }
 },
 {
@@ -326,7 +355,8 @@
     "quantite": 50.0,
     "unite": "g",
     "categorie": "Épices",
-    "lieu": "Placard"
+    "lieu": "Placard",
+    "seuil_alerte": 10.0
   }
 },
 {
@@ -337,7 +367,8 @@
     "quantite": 100.0,
     "unite": "g",
     "categorie": "Produits laitiers",
-    "lieu": "Frigo"
+    "lieu": "Frigo",
+    "seuil_alerte": 100.0
   }
 },
 {
@@ -348,7 +379,8 @@
     "quantite": 8.0,
     "unite": "tranches",
     "categorie": "Charcuterie",
-    "lieu": "Frigo"
+    "lieu": "Frigo",
+    "seuil_alerte": 1.0
   }
 },
 {
@@ -358,15 +390,9 @@
     "nom": "Pâtes au pesto",
     "cout_estime": 1000.0,
     "temps_preparation": 15,
+    "portions": 2,
     "instructions": "- Fais bouillir les pates\r\n- Ajoute le pesto\r\n-...",
-    "image": "recettes/pâtes_pesto.jpg",
-    "ingredients": [
-      12,
-      14,
-      18,
-      28,
-      29
-    ]
+    "image": "recettes/pâtes_pesto.jpg"
   }
 },
 {
@@ -376,18 +402,9 @@
     "nom": "Riz au boeuf sauté",
     "cout_estime": 2000.0,
     "temps_preparation": 25,
+    "portions": 2,
     "instructions": "- rincer le riz et laisser tremper dans de l'eau clair 15 min\r\n- verser le riz dans une marmite avec son double de quantité en eau avec une c-à-c de sel\r\n-rincer et mariner la viande avec les épices de ton choix \r\n- chauffer un filet d'huile et fais dorer la viande\r\n- verser un fond d'eau pour que la viande cuise bien \r\n- apres evaporation de l'eau éplucher les oignons et les couper en lamelles avant de les ajouter a la viande \r\n- une fois cuits servir avec du riz\r\n                     Bon Appétit !!!",
-    "image": "recettes/riz_avec_du_boeuf_sauté_aux_oignons.jpg",
-    "ingredients": [
-      3,
-      8,
-      10,
-      11,
-      12,
-      14,
-      15,
-      17
-    ]
+    "image": "recettes/riz_avec_du_boeuf_sauté_aux_oignons.jpg"
   }
 },
 {
@@ -397,15 +414,9 @@
     "nom": "Omelette aux champignons",
     "cout_estime": 1000.0,
     "temps_preparation": 8,
+    "portions": 2,
     "instructions": "1️⃣ Nettoie et émince les champignons. Épluche et coupe finement l’oignon.\r\n2️⃣ Dans une poêle, fais fondre le beurre ou chauffe l’huile. Fais revenir l’oignon jusqu’à ce qu’il devienne translucide. Ajoute les champignons, fais-les sauter 5 à 7 min jusqu’à ce qu’ils rendent leur eau et soient dorés.\r\n3️⃣ Bats les œufs dans un bol, ajoute une pincée de sel, du poivre et un petit filet de lait si tu veux.\r\n4️⃣ Verse les œufs battus sur les champignons. Laisse cuire à feu moyen, replie délicatement l’omelette quand elle est prise mais encore un peu baveuse à l’intérieur.\r\n5️⃣ Sers chaud, avec une petite salade verte ou une tranche de pain.",
-    "image": "recettes/omelette_aux_champignons.jpg",
-    "ingredients": [
-      10,
-      12,
-      13,
-      14,
-      20
-    ]
+    "image": "recettes/omelette_aux_champignons.jpg"
   }
 },
 {
@@ -415,16 +426,9 @@
     "nom": "Steak frites maison",
     "cout_estime": 2500.0,
     "temps_preparation": 45,
+    "portions": 2,
     "instructions": "1️⃣ Épluche et coupe les pommes de terre en bâtonnets pour faire des frites.\r\n\r\n2️⃣ Fais chauffer l’huile dans une poêle ou une friteuse (ou au four si tu préfères limiter l’huile). Plonge les frites jusqu’à ce qu’elles soient bien dorées et croustillantes. Égoutte-les sur du papier absorbant, sale-les.\r\n\r\n3️⃣ Assaisonne ton steak avec sel et poivre.\r\n\r\n4️⃣ Dans une poêle bien chaude, fais fondre un peu de beurre ou ajoute un filet d’huile. Dépose le steak, saisis-le 2-3 min de chaque côté selon la cuisson désirée (saignant, à point, bien cuit).\r\n\r\n5️⃣ Serre le steak avec les frites. Tu peux ajouter une petite salade verte ou une sauce maison (ketchup, moutarde, ou une sauce au poivre simple).",
-    "image": "recettes/Steak_frites_maison.jpg",
-    "ingredients": [
-      10,
-      12,
-      14,
-      15,
-      21,
-      22
-    ]
+    "image": "recettes/Steak_frites_maison.jpg"
   }
 },
 {
@@ -434,21 +438,9 @@
     "nom": "Djolof Rice (Riz Wolof)",
     "cout_estime": 1000.0,
     "temps_preparation": 50,
+    "portions": 2,
     "instructions": "Étapes :\r\n1️⃣ Émince l’oignon et l’ail. Si tu mets du poulet, sale-le et poivre-le.\r\n\r\n2️⃣ Dans une casserole, fais chauffer un peu d’huile. Fais revenir l’oignon et l’ail, ajoute le concentré de tomate ou les tomates mixées. Laisse cuire 5 min.\r\n\r\n3️⃣ Ajoute le poulet ou le poisson pour les faire dorer légèrement. Assaisonne avec cube bouillon, sel, poivre et piment si tu aimes.\r\n\r\n4️⃣ Verse un peu d’eau, couvre et laisse mijoter pour que la viande ou le poisson cuisent bien.\r\n\r\n5️⃣ Retire la viande/poisson et réserve-les. Ajoute le riz lavé dans la sauce tomate.\r\n\r\n6️⃣ Verse juste assez d’eau pour couvrir le riz (un peu plus si nécessaire), puis laisse cuire à feu doux jusqu’à ce que l’eau soit absorbée et le riz bien cuit.\r\n\r\n7️⃣ Remets la viande ou le poisson par-dessus pour réchauffer avant de servir.",
-    "image": "recettes/Djolof_Rice_Poisson.jpg",
-    "ingredients": [
-      8,
-      10,
-      12,
-      14,
-      15,
-      17,
-      18,
-      24,
-      25,
-      26,
-      27
-    ]
+    "image": "recettes/Djolof_Rice_Poisson.jpg"
   }
 },
 {
@@ -458,23 +450,9 @@
     "nom": "Bowl “Yassa Light”",
     "cout_estime": 2000.0,
     "temps_preparation": 30,
+    "portions": 2,
     "instructions": "Étapes :\r\n\r\n-  Marine le poisson avec citron, moutarde, oignon, sel, poivre (10 min).\r\n-  Grille ou cuit le poisson au four ou à la poêle sans trop de matière grasse.\r\n-  Fais cuire le quinoa selon les instructions.\r\n-  Dans un bol, dépose le quinoa, ajoute les crudités et le poisson par-dessus.\r\n-  Verse la marinade d’oignons légèrement réchauffée comme sauce.",
-    "image": "recettes/Bowl_Yassa_Light_au_poisson_grillé_et_quinoa.jpg",
-    "ingredients": [
-      8,
-      14,
-      15,
-      17,
-      18,
-      24,
-      25,
-      26,
-      30,
-      31,
-      32,
-      33,
-      34
-    ]
+    "image": "recettes/Bowl_Yassa_Light_au_poisson_grillé_et_quinoa.jpg"
   }
 },
 {
@@ -484,20 +462,9 @@
     "nom": "Pâtes au thon et sauce tomate",
     "cout_estime": 1500.0,
     "temps_preparation": 25,
+    "portions": 2,
     "instructions": "Étapes :\r\n-  Fais cuire les pâtes dans de l’eau salée.\r\n-  Émince l’oignon, fais-le revenir dans un peu d’huile.\r\n-  Ajoute la tomate/concentré, laisse mijoter 5 min.\r\n-  Ajoute le thon émietté, mélange, assaisonne.\r\n-  Égoutte les pâtes, verse la sauce dessus.",
-    "image": "recettes/Pâtes_au_thon_et_sauce_tomate.jpg",
-    "ingredients": [
-      10,
-      12,
-      14,
-      17,
-      18,
-      25,
-      27,
-      29,
-      35,
-      36
-    ]
+    "image": "recettes/Pâtes_au_thon_et_sauce_tomate.jpg"
   }
 },
 {
@@ -507,17 +474,9 @@
     "nom": "Pâtes façon carbonara",
     "cout_estime": 1200.0,
     "temps_preparation": 20,
+    "portions": 2,
     "instructions": "Étapes :\r\n-  Fais cuire les pâtes dans de l’eau salée.\r\n-  Bats l’œuf dans un bol, ajoute le fromage râpé, sel, poivre.\r\n-  faire revenir du jambon ou bacon avec un peu d'huile\r\n-  Égoutte les pâtes, mets-les dans la poêle encore chaude avec un filet d’huile et de l’ail si tu veux.\r\n-  Retire du feu, verse le mélange œuf-fromage, remue vite pour que ça cuise avec la chaleur des pâtes sans devenir une omelette.\r\n-  servir dans une assiette et verser le jambon au dessus",
-    "image": "recettes/Pâtes_façon_carbonara.jpg",
-    "ingredients": [
-      12,
-      13,
-      14,
-      18,
-      29,
-      37,
-      38
-    ]
+    "image": "recettes/Pâtes_façon_carbonara.jpg"
   }
 },
 {
@@ -527,19 +486,675 @@
     "nom": "Riz sauté veggie aux œufs",
     "cout_estime": 600.0,
     "temps_preparation": 20,
+    "portions": 2,
     "instructions": "Étapes :\r\n-  Coupe les légumes en petits dés et fais-les revenir dans une poêle. \r\n\r\n-  Ajoute le riz cuit, mélange bien.\r\n\r\n-  Bat l’œuf, verse-le dans la poêle et mélange pour qu’il coagule en petits morceaux.\r\n\r\n-  Assaisonne à ton goût.",
-    "image": "recettes/Riz_sauté_veggie_aux_œufs.jpg",
-    "ingredients": [
-      8,
-      12,
-      13,
-      14,
-      15,
-      17,
-      18,
-      26,
-      33
-    ]
+    "image": "recettes/Riz_sauté_veggie_aux_œufs.jpg"
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 1,
+  "fields": {
+    "recette": 6,
+    "ingredient": 18,
+    "quantite": 5.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 2,
+  "fields": {
+    "recette": 6,
+    "ingredient": 33,
+    "quantite": 1.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 3,
+  "fields": {
+    "recette": 6,
+    "ingredient": 31,
+    "quantite": 2.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 4,
+  "fields": {
+    "recette": 6,
+    "ingredient": 34,
+    "quantite": 1.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 5,
+  "fields": {
+    "recette": 6,
+    "ingredient": 25,
+    "quantite": 1.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 6,
+  "fields": {
+    "recette": 6,
+    "ingredient": 17,
+    "quantite": 200.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 7,
+  "fields": {
+    "recette": 6,
+    "ingredient": 15,
+    "quantite": 1.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 8,
+  "fields": {
+    "recette": 6,
+    "ingredient": 24,
+    "quantite": 1.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 9,
+  "fields": {
+    "recette": 6,
+    "ingredient": 14,
+    "quantite": 1.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 10,
+  "fields": {
+    "recette": 6,
+    "ingredient": 26,
+    "quantite": 0.5
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 11,
+  "fields": {
+    "recette": 6,
+    "ingredient": 32,
+    "quantite": 150.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 12,
+  "fields": {
+    "recette": 6,
+    "ingredient": 8,
+    "quantite": 100.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 13,
+  "fields": {
+    "recette": 6,
+    "ingredient": 30,
+    "quantite": 100.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 14,
+  "fields": {
+    "recette": 5,
+    "ingredient": 18,
+    "quantite": 10.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 15,
+  "fields": {
+    "recette": 5,
+    "ingredient": 25,
+    "quantite": 2.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 16,
+  "fields": {
+    "recette": 5,
+    "ingredient": 10,
+    "quantite": 0.05
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 17,
+  "fields": {
+    "recette": 5,
+    "ingredient": 17,
+    "quantite": 150.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 18,
+  "fields": {
+    "recette": 5,
+    "ingredient": 15,
+    "quantite": 2.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 19,
+  "fields": {
+    "recette": 5,
+    "ingredient": 24,
+    "quantite": 1.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 20,
+  "fields": {
+    "recette": 5,
+    "ingredient": 14,
+    "quantite": 2.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 21,
+  "fields": {
+    "recette": 5,
+    "ingredient": 26,
+    "quantite": 1.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 22,
+  "fields": {
+    "recette": 5,
+    "ingredient": 8,
+    "quantite": 300.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 23,
+  "fields": {
+    "recette": 5,
+    "ingredient": 12,
+    "quantite": 5.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 24,
+  "fields": {
+    "recette": 5,
+    "ingredient": 27,
+    "quantite": 70.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 25,
+  "fields": {
+    "recette": 3,
+    "ingredient": 20,
+    "quantite": 150.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 26,
+  "fields": {
+    "recette": 3,
+    "ingredient": 10,
+    "quantite": 0.01
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 27,
+  "fields": {
+    "recette": 3,
+    "ingredient": 13,
+    "quantite": 3.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 28,
+  "fields": {
+    "recette": 3,
+    "ingredient": 14,
+    "quantite": 1.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 29,
+  "fields": {
+    "recette": 3,
+    "ingredient": 12,
+    "quantite": 2.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 30,
+  "fields": {
+    "recette": 1,
+    "ingredient": 18,
+    "quantite": 5.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 31,
+  "fields": {
+    "recette": 1,
+    "ingredient": 28,
+    "quantite": 50.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 32,
+  "fields": {
+    "recette": 1,
+    "ingredient": 14,
+    "quantite": 1.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 33,
+  "fields": {
+    "recette": 1,
+    "ingredient": 12,
+    "quantite": 5.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 34,
+  "fields": {
+    "recette": 1,
+    "ingredient": 29,
+    "quantite": 200.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 35,
+  "fields": {
+    "recette": 7,
+    "ingredient": 18,
+    "quantite": 5.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 36,
+  "fields": {
+    "recette": 7,
+    "ingredient": 25,
+    "quantite": 1.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 37,
+  "fields": {
+    "recette": 7,
+    "ingredient": 36,
+    "quantite": 2.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 38,
+  "fields": {
+    "recette": 7,
+    "ingredient": 10,
+    "quantite": 0.02
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 39,
+  "fields": {
+    "recette": 7,
+    "ingredient": 17,
+    "quantite": 100.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 40,
+  "fields": {
+    "recette": 7,
+    "ingredient": 14,
+    "quantite": 1.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 41,
+  "fields": {
+    "recette": 7,
+    "ingredient": 12,
+    "quantite": 5.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 42,
+  "fields": {
+    "recette": 7,
+    "ingredient": 29,
+    "quantite": 200.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 43,
+  "fields": {
+    "recette": 7,
+    "ingredient": 35,
+    "quantite": 1.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 44,
+  "fields": {
+    "recette": 7,
+    "ingredient": 27,
+    "quantite": 70.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 45,
+  "fields": {
+    "recette": 8,
+    "ingredient": 18,
+    "quantite": 5.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 46,
+  "fields": {
+    "recette": 8,
+    "ingredient": 37,
+    "quantite": 50.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 47,
+  "fields": {
+    "recette": 8,
+    "ingredient": 38,
+    "quantite": 4.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 48,
+  "fields": {
+    "recette": 8,
+    "ingredient": 13,
+    "quantite": 2.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 49,
+  "fields": {
+    "recette": 8,
+    "ingredient": 14,
+    "quantite": 2.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 50,
+  "fields": {
+    "recette": 8,
+    "ingredient": 12,
+    "quantite": 5.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 51,
+  "fields": {
+    "recette": 8,
+    "ingredient": 29,
+    "quantite": 200.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 52,
+  "fields": {
+    "recette": 2,
+    "ingredient": 3,
+    "quantite": 300.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 53,
+  "fields": {
+    "recette": 2,
+    "ingredient": 10,
+    "quantite": 0.03
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 54,
+  "fields": {
+    "recette": 2,
+    "ingredient": 11,
+    "quantite": 10.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 55,
+  "fields": {
+    "recette": 2,
+    "ingredient": 17,
+    "quantite": 150.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 56,
+  "fields": {
+    "recette": 2,
+    "ingredient": 15,
+    "quantite": 2.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 57,
+  "fields": {
+    "recette": 2,
+    "ingredient": 14,
+    "quantite": 2.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 58,
+  "fields": {
+    "recette": 2,
+    "ingredient": 8,
+    "quantite": 200.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 59,
+  "fields": {
+    "recette": 2,
+    "ingredient": 12,
+    "quantite": 5.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 60,
+  "fields": {
+    "recette": 9,
+    "ingredient": 18,
+    "quantite": 5.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 61,
+  "fields": {
+    "recette": 9,
+    "ingredient": 33,
+    "quantite": 1.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 62,
+  "fields": {
+    "recette": 9,
+    "ingredient": 13,
+    "quantite": 2.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 63,
+  "fields": {
+    "recette": 9,
+    "ingredient": 17,
+    "quantite": 50.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 64,
+  "fields": {
+    "recette": 9,
+    "ingredient": 15,
+    "quantite": 1.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 65,
+  "fields": {
+    "recette": 9,
+    "ingredient": 14,
+    "quantite": 1.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 66,
+  "fields": {
+    "recette": 9,
+    "ingredient": 26,
+    "quantite": 0.5
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 67,
+  "fields": {
+    "recette": 9,
+    "ingredient": 8,
+    "quantite": 200.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 68,
+  "fields": {
+    "recette": 9,
+    "ingredient": 12,
+    "quantite": 3.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 69,
+  "fields": {
+    "recette": 4,
+    "ingredient": 10,
+    "quantite": 0.2
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 70,
+  "fields": {
+    "recette": 4,
+    "ingredient": 15,
+    "quantite": 1.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 71,
+  "fields": {
+    "recette": 4,
+    "ingredient": 14,
+    "quantite": 2.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 72,
+  "fields": {
+    "recette": 4,
+    "ingredient": 22,
+    "quantite": 400.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 73,
+  "fields": {
+    "recette": 4,
+    "ingredient": 12,
+    "quantite": 5.0
+  }
+},
+{
+  "model": "menuapp.recetteingredient",
+  "pk": 74,
+  "fields": {
+    "recette": 4,
+    "ingredient": 21,
+    "quantite": 2.0
   }
 },
 {

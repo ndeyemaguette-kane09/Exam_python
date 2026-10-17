@@ -1,15 +1,77 @@
 {% extends 'menuapp/base.html' %}
+{% load equitable %}
+{% block titre %}Historique{% endblock %}
 {% block content %}
-  <h2 class="mb-4">Historique des Menus Validés 📑</h2>
+  <div class="page-titre">
+    <div>
+      <h1><i class="ti ti-history"></i>Historique des repas</h1>
+      <p>Tout ce que tu as cuisiné avec ÉquiTable.</p>
+    </div>
+    <a href="{% url 'generer_menu' %}" class="btn btn-success"><i class="ti ti-arrows-shuffle"></i>Que cuisiner ?</a>
+  </div>
+
+  <div class="row g-3 mb-4">
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="carte stat">
+        <div class="stat-icone"><i class="ti ti-calendar"></i></div>
+        <div><div class="stat-valeur">{{ nb_mois }}</div><div class="stat-libelle">Repas en {{ mois|date:"F" }}</div></div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="carte stat">
+        <div class="stat-icone orange"><i class="ti ti-wallet"></i></div>
+        <div><div class="stat-valeur fs-5">{{ budget_mois|fcfa }}</div><div class="stat-libelle">Budget du mois</div></div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="carte stat">
+        <div class="stat-icone"><i class="ti ti-chart-bar"></i></div>
+        <div><div class="stat-valeur">{{ nb_total }}</div><div class="stat-libelle">Repas au total</div></div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="carte stat">
+        <div class="stat-icone rouge"><i class="ti ti-flame"></i></div>
+        <div class="min-w-0">
+          {% if top %}
+            <div class="fw-bold text-truncate"><a href="{% url 'detail_recette' top.recette__id %}" class="text-reset text-decoration-none">{{ top.recette__nom }}</a></div>
+            <div class="stat-libelle">La plus cuisinée · {{ top.nb }} fois</div>
+          {% else %}
+            <div class="fw-bold">—</div><div class="stat-libelle">La plus cuisinée</div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
   {% if historiques %}
-    <ul class="list-group">
-      {% for h in historiques %}
-        <li class="list-group-item">
-          <i class="bi bi-check-square"></i> <strong>{{ h.recette.nom }}</strong> — validée le {{ h.date_validation|date:"d/m/Y H:i" }}
-        </li>
-      {% endfor %}
-    </ul>
+    <div class="row">
+      <div class="col-lg-9">
+        <div class="timeline">
+          {% regroup historiques by jour as jours %}
+          {% for jour in jours %}
+            <div class="timeline-jour">
+              <div class="timeline-date">{{ jour.grouper|date:"l j F Y"|capfirst }}</div>
+              {% for h in jour.list %}
+                <a href="{% url 'detail_recette' h.recette.id %}" class="carte carte-lien timeline-item text-decoration-none text-reset">
+                  {% if h.recette.image %}
+                    <img src="{{ h.recette.image.url }}" alt="">
+                  {% else %}
+                    <span class="vignette-vide"><i class="ti ti-tools-kitchen-2"></i></span>
+                  {% endif %}
+                  <div class="flex-fill min-w-0">
+                    <div class="fw-semibold text-truncate">{{ h.recette.nom }}</div>
+                    <div class="meta"><span><i class="ti ti-clock"></i> {{ h.date_validation|date:"H:i" }}</span><span><i class="ti ti-coin"></i> {{ h.recette.cout_estime|fcfa }}</span></div>
+                  </div>
+                  <i class="ti ti-arrow-right text-secondary"></i>
+                </a>
+              {% endfor %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
   {% else %}
-    <p>Aucune recette validée pour l'instant.</p>
+    <div class="carte vide"><i class="ti ti-history"></i>Aucune recette validée pour l'instant. Quand tu cuisines une recette, elle apparaît ici.</div>
   {% endif %}
 {% endblock %}

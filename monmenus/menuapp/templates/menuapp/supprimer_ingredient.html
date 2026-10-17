@@ -1,10 +1,27 @@
 {% extends 'menuapp/base.html' %}
+{% block titre %}Supprimer {{ ingredient }}{% endblock %}
 {% block content %}
-  <h2>Supprimer {{ ingredient.nom }}</h2>
-  <p>Es-tu sûr(e) de vouloir supprimer cet ingrédient ?</p>
-  <form method="POST">
-    {% csrf_token %}
-    <button type="submit" class="btn btn-danger">Oui, supprimer</button>
-    <a href="{% url retour %}" class="btn btn-secondary">Annuler</a>
-  </form>
+  <div class="row justify-content-center">
+    <div class="col-lg-6">
+      <div class="carte p-4">
+        <h1 class="h4 fw-bold d-flex align-items-center gap-2"><i class="ti ti-trash text-danger"></i>Supprimer {{ ingredient }}</h1>
+        {% if recettes %}
+          <p>Cet ingrédient est utilisé dans {{ recettes|length }} recette{{ recettes|length|pluralize }} :</p>
+          <ul>{% for r in recettes %}<li>{{ r.nom }}</li>{% endfor %}</ul>
+          <p class="text-secondary">Tu ne peux pas le supprimer, mais tu peux mettre sa quantité à 0 pour le marquer en rupture.</p>
+          <div class="d-flex gap-2">
+            <a href="{% url 'modifier_ingredient' ingredient.id %}" class="btn btn-success"><i class="ti ti-pencil"></i>Modifier la quantité</a>
+            <a href="{% url retour %}" class="btn btn-outline-secondary">Retour</a>
+          </div>
+        {% else %}
+          <p>Es-tu sûr(e) de vouloir supprimer cet ingrédient ?</p>
+          <form method="POST" class="d-flex gap-2">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger"><i class="ti ti-trash"></i>Oui, supprimer</button>
+            <a href="{% url retour %}" class="btn btn-outline-secondary">Annuler</a>
+          </form>
+        {% endif %}
+      </div>
+    </div>
+  </div>
 {% endblock %}

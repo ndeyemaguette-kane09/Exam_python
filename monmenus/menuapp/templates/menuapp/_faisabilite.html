@@ -1,0 +1,9 @@
+{% if etat.faisable %}
+  <span class="pastille"><i class="ti ti-circle-check"></i>Faisable maintenant</span>
+{% elif etat.total == 0 %}
+  <span class="pastille gris"><i class="ti ti-list-check"></i>Aucun ingrédient</span>
+{% elif etat.score >= 70 %}
+  <span class="pastille orange"><i class="ti ti-shopping-cart"></i>Il manque {{ etat.manquants|length }} ingrédient{{ etat.manquants|length|pluralize }}</span>
+{% else %}
+  <span class="pastille rouge"><i class="ti ti-shopping-cart"></i>Il manque {{ etat.manquants|length }} ingrédient{{ etat.manquants|length|pluralize }}</span>
+{% endif %}

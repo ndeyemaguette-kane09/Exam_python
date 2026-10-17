@@ -1,23 +1,78 @@
 {% extends 'menuapp/base.html' %}
+{% block titre %}Recettes{% endblock %}
 {% block content %}
-  <h2 class="mb-4">Toutes les Recettes 🍽️</h2>
-  <div class="row">
-    {% for recette in recettes %}
-      <div class="col-md-4 mb-4">
-        <div class="card shadow-sm">
-          {% if recette.image %}
-            <img src="{{ recette.image.url }}" class="card-img-top img-fluid" style="max-height: 200px; object-fit: cover;">
-          {% endif %}
-          <div class="card-body">
-            <h5 class="card-title">{{ recette.nom }}</h5>
-            <p><strong>Coût estimé :</strong> {{ recette.cout_estime }} Fcfa</p>
-            <p><strong>Temps préparation :</strong> {{ recette.temps_preparation }} min</p>
-           <a href="{% url 'detail_recette' recette.id %}" class="btn btn-primary btn-sm">Voir la recette</a>
-          </div>
+  <div class="page-titre">
+    <div>
+      <h1><i class="ti ti-book-2"></i>Toutes les recettes</h1>
+      <p>{{ recettes|length }} recette{{ recettes|length|pluralize }}{% if filtre_actif %} correspondant à ta recherche{% endif %}</p>
+    </div>
+    <a href="{% url 'creer_recette' %}" class="btn btn-success"><i class="ti ti-plus"></i>Nouvelle recette</a>
+  </div>
+
+  <form method="get" class="carte filtres mb-4">
+    <div class="row g-2 align-items-end">
+      <div class="col-12 col-lg-4">
+        <label class="form-label small fw-semibold" for="q">Recherche</label>
+        <div class="input-group">
+          <span class="input-group-text bg-white"><i class="ti ti-search"></i></span>
+          <input type="search" name="q" id="q" value="{{ filtres.q }}" class="form-control" placeholder="Nom ou ingrédient (riz, poisson…)">
         </div>
       </div>
-    {% empty %}
-      <p>Aucune recette disponible pour le moment.</p>
-    {% endfor %}
-  </div>
+      <div class="col-6 col-lg-2">
+        <label class="form-label small fw-semibold" for="budget">Budget max</label>
+        <select name="budget" id="budget" class="form-select">
+          <option value="">Tous</option>
+          <option value="1000" {% if filtres.budget == '1000' %}selected{% endif %}>1 000 FCFA</option>
+          <option value="1500" {% if filtres.budget == '1500' %}selected{% endif %}>1 500 FCFA</option>
+          <option value="2000" {% if filtres.budget == '2000' %}selected{% endif %}>2 000 FCFA</option>
+          <option value="3000" {% if filtres.budget == '3000' %}selected{% endif %}>3 000 FCFA</option>
+        </select>
+      </div>
+      <div class="col-6 col-lg-2">
+        <label class="form-label small fw-semibold" for="temps">Temps max</label>
+        <select name="temps" id="temps" class="form-select">
+          <option value="">Tous</option>
+          <option value="15" {% if filtres.temps == '15' %}selected{% endif %}>15 min</option>
+          <option value="30" {% if filtres.temps == '30' %}selected{% endif %}>30 min</option>
+          <option value="45" {% if filtres.temps == '45' %}selected{% endif %}>45 min</option>
+          <option value="60" {% if filtres.temps == '60' %}selected{% endif %}>1 h</option>
+        </select>
+      </div>
+      <div class="col-6 col-lg-2">
+        <label class="form-label small fw-semibold" for="tri">Trier par</label>
+        <select name="tri" id="tri" class="form-select">
+          <option value="nom" {% if filtres.tri == 'nom' %}selected{% endif %}>Nom</option>
+          <option value="stock" {% if filtres.tri == 'stock' %}selected{% endif %}>Mon stock</option>
+          <option value="cout" {% if filtres.tri == 'cout' %}selected{% endif %}>Prix</option>
+          <option value="temps" {% if filtres.tri == 'temps' %}selected{% endif %}>Temps</option>
+        </select>
+      </div>
+      <div class="col-6 col-lg-2">
+        <div class="form-check mb-2">
+          <input class="form-check-input" type="checkbox" name="faisable" value="1" id="faisable" {% if filtres.faisable %}checked{% endif %}>
+          <label class="form-check-label small" for="faisable">Faisable maintenant</label>
+        </div>
+      </div>
+      <div class="col-12 d-flex gap-2 justify-content-end">
+        {% if filtre_actif %}<a href="{% url 'recettes' %}" class="btn btn-outline-secondary btn-sm"><i class="ti ti-x"></i>Effacer</a>{% endif %}
+        <button type="submit" class="btn btn-success btn-sm"><i class="ti ti-filter"></i>Filtrer</button>
+      </div>
+    </div>
+  </form>
+
+  {% if recettes %}
+    <div class="row g-4">
+      {% for recette in recettes %}
+        <div class="col-12 col-sm-6 col-lg-4">
+          {% if recette.id in favoris %}
+            {% include 'menuapp/_carte_recette.html' with recette=recette etat=recette.etat est_favori=True %}
+          {% else %}
+            {% include 'menuapp/_carte_recette.html' with recette=recette etat=recette.etat est_favori=False %}
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="carte vide"><i class="ti ti-mood-empty"></i>Aucune recette ne correspond.{% if filtre_actif %} <a href="{% url 'recettes' %}">Voir toutes les recettes</a>{% endif %}</div>
+  {% endif %}
 {% endblock %}

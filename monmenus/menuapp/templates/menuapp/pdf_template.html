@@ -1,26 +1,86 @@
+{% load equitable %}<html>
+<head>
+<meta charset="utf-8">
 <style>
-  body { font-family: Arial, sans-serif; margin: 40px; }
-  h1 { color: #2b9348; }
-  .section { margin-bottom: 20px; }
-  ul { padding-left: 20px; }
+  @page {
+    size: a4 portrait;
+    margin: 1.4cm 1.6cm 2cm 1.6cm;
+    @frame pied {
+      -pdf-frame-content: pied;
+      left: 1.6cm; right: 1.6cm; bottom: .8cm; height: .8cm;
+    }
+  }
+  body { font-family: Helvetica; font-size: 10pt; color: #1f2a24; line-height: 1.4; }
+  .marque { color: #2b9348; font-size: 10pt; font-weight: bold; letter-spacing: 1px; }
+  .slogan { color: #8a948e; font-size: 8.5pt; }
+  h1 { font-size: 24pt; margin: 10pt 0 8pt 0; color: #14251a; line-height: 1.15; }
+  h2 { font-size: 12pt; color: #2b9348; margin: 0 0 6pt 0; padding-bottom: 4pt; border-bottom: 1.2pt solid #2b9348; text-transform: uppercase; letter-spacing: 1px; }
+  .photo { margin: 4pt 0 10pt 0; }
+  .meta td { background-color: #e7f4ea; padding: 7pt 6pt 5pt 6pt; text-align: center; }
+  .meta .valeur { font-size: 13pt; font-weight: bold; color: #1f6f36; }
+  .meta .libelle { font-size: 7.5pt; color: #4b5d51; text-transform: uppercase; letter-spacing: .5px; }
+  .ingr td { padding: 4pt 0 3pt 0; border-bottom: .5pt solid #dfe7e0; font-size: 9.5pt; }
+  .ingr .qte { text-align: right; font-weight: bold; color: #1f6f36; }
+  .etape td { padding: 0 0 7pt 0; vertical-align: top; }
+  .num { color: #2b9348; font-weight: bold; font-size: 13pt; vertical-align: top; line-height: 1; }
+  .texte-etape { padding-left: 4pt; font-size: 10pt; }
+  #pied { color: #8a948e; font-size: 7.5pt; border-top: .5pt solid #dfe7e0; padding-top: 4pt; }
 </style>
-{% if recette.image %}
-  <img src="{{ recette.image.url }}" alt="{{ recette.nom }}" style="max-width: 100%; height: auto; margin-bottom: 20px;">
-{% endif %}
-<h1>{{ recette.nom }}</h1>
-<div class="section">
-  <p><strong>Coût estimé :</strong> {{ recette.cout_estime }} Fcfa</p>
-  <p><strong>Temps de préparation :</strong> {{ recette.temps_preparation }} min</p>
-</div>
-<div class="section">
-  <h3>Ingrédients :</h3>
-  <ul>
-    {% for ing in recette.ingredients.all %}
-      <li>{{ ing.nom }}</li>
-    {% endfor %}
-  </ul>
-</div>
-<div class="section">
-  <h3>Instructions :</h3>
-  <p>{{ recette.instructions|linebreaksbr }}</p>
-</div>
+</head>
+<body>
+  <table>
+    <tr>
+      <td class="marque">ÉQUITABLE</td>
+      <td class="slogan" style="text-align: right">Des menus sains, sans se ruiner</td>
+    </tr>
+  </table>
+
+  <h1>{{ recette.nom }}</h1>
+
+  {% if photo %}
+    <div class="photo"><img src="{{ photo }}" style="width: 17.8cm; height: 8.1cm"></div>
+  {% endif %}
+
+  <table class="meta" cellspacing="4">
+    <tr>
+      <td><div class="valeur">{{ recette.temps_preparation|duree }}</div><div class="libelle">Préparation</div></td>
+      <td><div class="valeur">{{ recette.cout_estime|fcfa }}</div><div class="libelle">Coût estimé</div></td>
+      <td><div class="valeur">{{ recette.portions }}</div><div class="libelle">Portion{{ recette.portions|pluralize }}</div></td>
+      <td><div class="valeur">{{ recette.lignes.all|length }}</div><div class="libelle">Ingrédients</div></td>
+    </tr>
+  </table>
+
+  <table style="margin-top: 14pt">
+    <tr>
+      <td width="34%" style="vertical-align: top; padding-right: 16pt">
+        <h2>Ingrédients</h2>
+        <table class="ingr">
+          {% for ligne in recette.lignes.all %}
+            <tr>
+              <td>{{ ligne.ingredient }}</td>
+              <td class="qte">{{ ligne.quantite|nombre }} {{ ligne.ingredient.unite }}</td>
+            </tr>
+          {% empty %}
+            <tr><td>Aucun ingrédient renseigné.</td></tr>
+          {% endfor %}
+        </table>
+      </td>
+      <td width="66%" style="vertical-align: top">
+        <h2>Préparation</h2>
+        <table class="etape">
+          {% for etape in recette.etapes %}
+            <tr>
+              <td class="num" width="20">{{ forloop.counter }}</td>
+              <td class="texte-etape" width="310">{{ etape }}</td>
+            </tr>
+          {% empty %}
+            <tr><td>Aucune étape renseignée.</td></tr>
+          {% endfor %}
+        </table>
+      </td>
+    </tr>
+  </table>
+
+  <div id="pied">ÉquiTable · Recette exportée le {{ date_export|date:"j F Y" }} · Page <pdf:pagenumber> sur <pdf:pagecount></div>
+</body>
+</html>

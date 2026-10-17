@@ -1,0 +1,19 @@
+{% load equitable %}
+<ul class="liste-ingredients">
+  {% for ligne in recette.lignes.all %}
+    <li>
+      <span class="icone-cat {% if not ligne.disponible %}{% if ligne.ingredient.en_rupture %}rupture{% else %}bas{% endif %}{% endif %}"><i class="ti ti-{{ ligne.ingredient.icone }}"></i></span>
+      <div>
+        <div class="fw-semibold">{{ ligne.ingredient }}</div>
+        {% if ligne.disponible %}
+          <small class="text-secondary">En stock : {{ ligne.ingredient.quantite|nombre }} {{ ligne.ingredient.unite }}</small>
+        {% else %}
+          <small class="text-danger">Il manque {{ ligne.manque|nombre }} {{ ligne.ingredient.unite }}</small>
+        {% endif %}
+      </div>
+      <span class="qte">{{ ligne.quantite|nombre }} {{ ligne.ingredient.unite }}</span>
+    </li>
+  {% empty %}
+    <li class="text-secondary">Aucun ingrédient renseigné.</li>
+  {% endfor %}
+</ul>
