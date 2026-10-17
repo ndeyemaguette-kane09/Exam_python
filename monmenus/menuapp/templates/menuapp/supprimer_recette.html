@@ -1,20 +1,16 @@
 {% extends 'menuapp/base.html' %}
 {% block titre %}Supprimer {{ recette.nom }}{% endblock %}
 {% block content %}
-  <div class="row justify-content-center">
-    <div class="col-lg-6">
-      <div class="carte p-4">
-        <h1 class="h4 fw-bold d-flex align-items-center gap-2"><i class="ti ti-trash text-danger"></i>Supprimer {{ recette.nom }}</h1>
-        <p>Cette action est définitive.</p>
-        {% if nb_historique or nb_repas %}
-          <p class="text-secondary">Elle effacera aussi {% if nb_historique %}{{ nb_historique }} entrée{{ nb_historique|pluralize }} de l'historique{% endif %}{% if nb_historique and nb_repas %} et {% endif %}{% if nb_repas %}{{ nb_repas }} repas planifié{{ nb_repas|pluralize }}{% endif %}.</p>
-        {% endif %}
-        <form method="POST" class="d-flex gap-2">
-          {% csrf_token %}
-          <button type="submit" class="btn btn-danger"><i class="ti ti-trash"></i>Oui, supprimer</button>
-          <a href="{% url 'detail_recette' recette.id %}" class="btn btn-outline-secondary">Annuler</a>
-        </form>
-      </div>
-    </div>
+  <div style="max-width: 560px">
+    <div class="titre-page"><h1>Supprimer {{ recette.nom }}</h1></div>
+    <p>La recette sera supprimée définitivement.</p>
+    {% if nb_historique or nb_repas %}
+      <p class="text-secondary">Cela retire aussi {% if nb_historique %}{{ nb_historique }} entrée{{ nb_historique|pluralize }} de l'historique{% endif %}{% if nb_historique and nb_repas %} et {% endif %}{% if nb_repas %}{{ nb_repas }} repas planifié{{ nb_repas|pluralize }}{% endif %}.</p>
+    {% endif %}
+    <form method="POST" class="d-flex gap-2 mt-4">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">Supprimer la recette</button>
+      <a href="{% url 'detail_recette' recette.id %}" class="btn btn-light">Annuler</a>
+    </form>
   </div>
 {% endblock %}

@@ -1,9 +1,7 @@
 {% if etat.faisable %}
-  <span class="pastille"><i class="ti ti-circle-check"></i>Faisable maintenant</span>
+  <span class="etat-ok">Faisable avec ton stock</span>
 {% elif etat.total == 0 %}
-  <span class="pastille gris"><i class="ti ti-list-check"></i>Aucun ingrédient</span>
-{% elif etat.score >= 70 %}
-  <span class="pastille orange"><i class="ti ti-shopping-cart"></i>Il manque {{ etat.manquants|length }} ingrédient{{ etat.manquants|length|pluralize }}</span>
+  <span class="etat-manque">Aucun ingrédient renseigné</span>
 {% else %}
-  <span class="pastille rouge"><i class="ti ti-shopping-cart"></i>Il manque {{ etat.manquants|length }} ingrédient{{ etat.manquants|length|pluralize }}</span>
+  <span class="etat-manque">Il manque {% for ligne in etat.manquants %}{% if not forloop.first %}{% if forloop.last %} et {% else %}, {% endif %}{% endif %}{{ ligne.ingredient|lower }}{% endfor %}</span>
 {% endif %}

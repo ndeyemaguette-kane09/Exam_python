@@ -1,20 +1,16 @@
 {% load equitable %}
-<article class="carte carte-lien carte-recette">
+<article class="recette">
   {% if recette.image %}
-    <img src="{{ recette.image.url }}" alt="{{ recette.nom }}" class="recette-photo" loading="lazy">
+    <img src="{{ recette.image.url }}" alt="" class="photo" loading="lazy">
   {% else %}
-    <div class="recette-photo recette-photo-vide"><i class="ti ti-tools-kitchen-2"></i></div>
+    <div class="photo photo-vide"><i class="ti ti-tools-kitchen-2"></i></div>
   {% endif %}
-  {% include 'menuapp/_favori.html' with classe='btn-favori-pos' %}
-  <div class="corps">
-    <h3><a href="{% url 'detail_recette' recette.id %}">{{ recette.nom }}</a></h3>
-    <div class="meta">
-      <span><i class="ti ti-clock"></i> {{ recette.temps_preparation|duree }}</span>
-      <span><i class="ti ti-coin"></i> {{ recette.cout_estime|fcfa }}</span>
-      <span><i class="ti ti-users"></i> {{ recette.portions }}</span>
-    </div>
-    <div class="mt-auto">
-      {% include 'menuapp/_faisabilite.html' with etat=etat %}
-    </div>
+  {% include 'menuapp/_favori.html' %}
+  <h3><a href="{% url 'detail_recette' recette.id %}">{{ recette.nom }}</a></h3>
+  <div class="infos">
+    <span>{{ recette.temps_preparation|duree }}</span>
+    <span>{{ recette.cout_estime|fcfa }}</span>
+    <span>{{ recette.portions }} pers.</span>
   </div>
+  <div class="etat">{% include 'menuapp/_faisabilite.html' %}</div>
 </article>

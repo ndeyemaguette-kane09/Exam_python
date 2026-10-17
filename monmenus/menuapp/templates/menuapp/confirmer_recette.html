@@ -2,56 +2,47 @@
 {% load equitable %}
 {% block titre %}Cuisiner {{ recette.nom }}{% endblock %}
 {% block content %}
-  <div class="row justify-content-center">
-    <div class="col-lg-8">
-      <div class="page-titre">
-        <div>
-          <h1><i class="ti ti-chef-hat"></i>{{ recette.nom }}</h1>
-          <p>Vérifie ce que tu as utilisé : ton stock sera mis à jour et le repas ajouté à l'historique.</p>
-        </div>
-      </div>
-      <form method="POST" class="carte p-4">
-        {% csrf_token %}
-        <div class="table-responsive">
-          <table class="table align-middle mb-0">
-            <thead>
-              <tr class="text-secondary small">
-                <th>Ingrédient</th>
-                <th>En stock</th>
-                <th style="min-width: 150px">Utilisé</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for ligne in lignes %}
-                <tr>
-                  <td>
-                    <div class="d-flex align-items-center gap-2">
-                      <span class="icone-cat {{ ligne.ingredient.statut }}" style="width:34px;height:34px;font-size:1.05rem"><i class="ti ti-{{ ligne.ingredient.icone }}"></i></span>
-                      <span class="fw-semibold">{{ ligne.ingredient }}</span>
-                    </div>
-                  </td>
-                  <td>
-                    {{ ligne.ingredient.quantite|nombre }} {{ ligne.ingredient.unite }}
-                    {% if not ligne.disponible %}<div class="small text-danger">insuffisant</div>{% endif %}
-                  </td>
-                  <td>
-                    <div class="input-group input-group-sm">
-                      <input type="number" step="0.01" min="0" name="quantite_{{ ligne.ingredient_id }}" value="{{ ligne.quantite|stringformat:'g' }}" class="form-control">
-                      {% if ligne.ingredient.unite %}<span class="input-group-text">{{ ligne.ingredient.unite }}</span>{% endif %}
-                    </div>
-                  </td>
-                </tr>
-              {% empty %}
-                <tr><td colspan="3" class="text-secondary">Cette recette n'a pas d'ingrédient renseigné.</td></tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        </div>
-        <div class="d-flex flex-wrap gap-2 mt-4">
-          <button type="submit" class="btn btn-success"><i class="ti ti-check"></i>Valider et mettre à jour le stock</button>
-          <a href="{% url 'detail_recette' recette.id %}" class="btn btn-outline-secondary">Annuler</a>
-        </div>
-      </form>
+  <div style="max-width: 760px">
+    <div class="titre-page">
+      <h1>{{ recette.nom }}</h1>
+      <p>Vérifie les quantités utilisées. Ton stock sera mis à jour et le repas ajouté à l'historique.</p>
     </div>
+    <form method="POST">
+      {% csrf_token %}
+      <div class="table-responsive">
+        <table class="table align-middle">
+          <thead>
+            <tr class="small text-secondary">
+              <th class="fw-semibold">Ingrédient</th>
+              <th class="fw-semibold">En stock</th>
+              <th class="fw-semibold" style="min-width: 150px">Utilisé</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for ligne in lignes %}
+              <tr>
+                <td class="fw-semibold">{{ ligne.ingredient }}</td>
+                <td>
+                  {{ ligne.ingredient.quantite|nombre }} {{ ligne.ingredient.unite }}
+                  {% if not ligne.disponible %}<div class="small manque">insuffisant</div>{% endif %}
+                </td>
+                <td>
+                  <div class="input-group input-group-sm">
+                    <input type="number" step="0.01" min="0" name="quantite_{{ ligne.ingredient_id }}" value="{{ ligne.quantite|stringformat:'g' }}" class="form-control" aria-label="Quantité de {{ ligne.ingredient }} utilisée">
+                    {% if ligne.ingredient.unite %}<span class="input-group-text">{{ ligne.ingredient.unite }}</span>{% endif %}
+                  </div>
+                </td>
+              </tr>
+            {% empty %}
+              <tr><td colspan="3" class="text-secondary">Cette recette n'a pas d'ingrédient renseigné.</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div class="d-flex flex-wrap gap-2 mt-3">
+        <button type="submit" class="btn btn-primary">Valider et mettre à jour le stock</button>
+        <a href="{% url 'detail_recette' recette.id %}" class="btn btn-light">Annuler</a>
+      </div>
+    </form>
   </div>
 {% endblock %}

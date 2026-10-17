@@ -10,19 +10,19 @@
       left: 1.6cm; right: 1.6cm; bottom: .8cm; height: .8cm;
     }
   }
-  body { font-family: Helvetica; font-size: 10pt; color: #1f2a24; line-height: 1.4; }
-  .marque { color: #2b9348; font-size: 10pt; font-weight: bold; letter-spacing: 1px; }
+  body { font-family: Helvetica; font-size: 10pt; color: #1b1f23; line-height: 1.4; }
+  .marque { color: #1f5f3f; font-size: 11pt; font-weight: bold; }
   .slogan { color: #8a948e; font-size: 8.5pt; }
-  h1 { font-size: 24pt; margin: 10pt 0 8pt 0; color: #14251a; line-height: 1.15; }
-  h2 { font-size: 12pt; color: #2b9348; margin: 0 0 6pt 0; padding-bottom: 4pt; border-bottom: 1.2pt solid #2b9348; text-transform: uppercase; letter-spacing: 1px; }
+  h1 { font-size: 24pt; margin: 10pt 0 8pt 0; color: #1b1f23; line-height: 1.15; }
+  h2 { font-size: 13pt; color: #1b1f23; margin: 0 0 6pt 0; padding-bottom: 4pt; border-bottom: .8pt solid #d1d5db; }
   .photo { margin: 4pt 0 10pt 0; }
-  .meta td { background-color: #e7f4ea; padding: 7pt 6pt 5pt 6pt; text-align: center; }
-  .meta .valeur { font-size: 13pt; font-weight: bold; color: #1f6f36; }
-  .meta .libelle { font-size: 7.5pt; color: #4b5d51; text-transform: uppercase; letter-spacing: .5px; }
+  .meta td { border-top: .8pt solid #e5e7eb; border-bottom: .8pt solid #e5e7eb; padding: 7pt 6pt 5pt 0; }
+  .meta .valeur { font-size: 13pt; font-weight: bold; color: #1f5f3f; }
+  .meta .libelle { font-size: 8.5pt; color: #6b7280; }
   .ingr td { padding: 4pt 0 3pt 0; border-bottom: .5pt solid #dfe7e0; font-size: 9.5pt; }
-  .ingr .qte { text-align: right; font-weight: bold; color: #1f6f36; }
+  .ingr .qte { text-align: right; font-weight: bold; color: #1f5f3f; }
   .etape td { padding: 0 0 7pt 0; vertical-align: top; }
-  .num { color: #2b9348; font-weight: bold; font-size: 13pt; vertical-align: top; line-height: 1; }
+  .num { color: #1f5f3f; font-weight: bold; font-size: 13pt; vertical-align: top; line-height: 1; }
   .texte-etape { padding-left: 4pt; font-size: 10pt; }
   #pied { color: #8a948e; font-size: 7.5pt; border-top: .5pt solid #dfe7e0; padding-top: 4pt; }
 </style>
@@ -30,8 +30,8 @@
 <body>
   <table>
     <tr>
-      <td class="marque">ÉQUITABLE</td>
-      <td class="slogan" style="text-align: right">Des menus sains, sans se ruiner</td>
+      <td class="marque">ÉquiTable</td>
+      <td class="slogan" style="text-align: right">Des menus sains sans se ruiner</td>
     </tr>
   </table>
 
@@ -41,7 +41,7 @@
     <div class="photo"><img src="{{ photo }}" style="width: 17.8cm; height: 8.1cm"></div>
   {% endif %}
 
-  <table class="meta" cellspacing="4">
+  <table class="meta">
     <tr>
       <td><div class="valeur">{{ recette.temps_preparation|duree }}</div><div class="libelle">Préparation</div></td>
       <td><div class="valeur">{{ recette.cout_estime|fcfa }}</div><div class="libelle">Coût estimé</div></td>
@@ -81,6 +81,6 @@
     </tr>
   </table>
 
-  <div id="pied">ÉquiTable · Recette exportée le {{ date_export|date:"j F Y" }} · Page <pdf:pagenumber> sur <pdf:pagecount></div>
+  <div id="pied">Recette exportée de ÉquiTable le {{ date_export|date:"j F Y" }}, page <pdf:pagenumber> sur <pdf:pagecount>. Application de Ndeye Maguette Kane.</div>
 </body>
 </html>

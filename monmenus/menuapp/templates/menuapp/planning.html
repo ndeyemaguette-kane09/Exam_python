@@ -2,95 +2,88 @@
 {% load equitable %}
 {% block titre %}Planning{% endblock %}
 {% block content %}
-  <div class="page-titre">
+  <div class="titre-page d-flex flex-wrap justify-content-between align-items-end gap-3">
     <div>
-      <h1><i class="ti ti-calendar-week"></i>Planning de la semaine</h1>
-      <p>Du {{ lundi|date:"j F" }} au {{ dimanche|date:"j F Y" }}</p>
+      <h1>Planning</h1>
+      <p>Semaine du {{ lundi|date:"j F" }} au {{ dimanche|date:"j F Y" }}</p>
     </div>
-    <div class="d-flex gap-2 no-print">
-      <a href="?semaine={{ precedente|date:'Y-m-d' }}" class="btn btn-outline-secondary btn-icone" aria-label="Semaine précédente"><i class="ti ti-arrow-left"></i></a>
-      {% if lundi != courante %}<a href="{% url 'planning' %}" class="btn btn-outline-secondary">Cette semaine</a>{% endif %}
-      <a href="?semaine={{ suivante|date:'Y-m-d' }}" class="btn btn-outline-secondary btn-icone" aria-label="Semaine suivante"><i class="ti ti-arrow-right"></i></a>
+    <div class="d-flex gap-2 align-items-center no-print">
+      <a href="?semaine={{ precedente|date:'Y-m-d' }}" class="btn btn-light btn-sm btn-icone" aria-label="Semaine précédente" title="Semaine précédente"><i class="ti ti-chevron-left"></i></a>
+      {% if lundi != courante %}<a href="{% url 'planning' %}" class="btn btn-light btn-sm">Cette semaine</a>{% endif %}
+      <a href="?semaine={{ suivante|date:'Y-m-d' }}" class="btn btn-light btn-sm btn-icone" aria-label="Semaine suivante" title="Semaine suivante"><i class="ti ti-chevron-right"></i></a>
     </div>
   </div>
 
-  <div class="planning-grille mb-4 no-print">
-    {% for jour in semaine %}
-      <div class="carte planning-jour {% if jour.aujourdhui %}aujourdhui{% endif %}">
-        <div class="planning-jour-titre">
-          <span>{{ jour.date|date:"l" }}</span>
-          <small class="text-secondary fw-normal">{{ jour.date|date:"j/m" }}</small>
-        </div>
-        {% for creneau in jour.creneaux %}
-          <div class="creneau">
-            <div class="creneau-libelle">{{ creneau.libelle }}</div>
-            {% if creneau.repas %}
-              <div class="creneau-recette"><a href="{% url 'detail_recette' creneau.repas.recette.id %}">{{ creneau.repas.recette }}</a></div>
-              <div class="actions">
-                <a href="{% url 'confirmer_recette' creneau.repas.recette.id %}" class="btn btn-success" title="Cuisiner"><i class="ti ti-chef-hat me-0"></i></a>
-                <form method="post" action="{% url 'retirer_repas' creneau.repas.id %}" class="m-0">
-                  {% csrf_token %}
-                  <button type="submit" class="btn btn-outline-secondary" title="Retirer"><i class="ti ti-x me-0"></i></button>
-                </form>
-              </div>
-            {% else %}
-              <form method="post" action="{% url 'planifier_repas' %}" class="m-0">
-                {% csrf_token %}
-                <input type="hidden" name="date" value="{{ jour.date|date:'Y-m-d' }}">
-                <input type="hidden" name="moment" value="{{ creneau.moment }}">
-                <select name="recette" class="form-select" onchange="this.form.submit()" aria-label="Choisir une recette">
-                  <option value="">+ Ajouter</option>
-                  {% for r in recettes %}<option value="{{ r.id }}">{{ r.nom }}</option>{% endfor %}
-                </select>
-              </form>
-            {% endif %}
-          </div>
-        {% endfor %}
-      </div>
-    {% endfor %}
-  </div>
-
-  <div class="row g-4">
-    <div class="col-lg-4 no-print">
-      <div class="carte stat h-auto mb-3">
-        <div class="stat-icone"><i class="ti ti-tools-kitchen-2"></i></div>
-        <div><div class="stat-valeur">{{ nb_repas }}</div><div class="stat-libelle">Repas prévus</div></div>
-      </div>
-      <div class="carte stat h-auto">
-        <div class="stat-icone orange"><i class="ti ti-wallet"></i></div>
-        <div><div class="stat-valeur fs-5">{{ budget|fcfa }}</div><div class="stat-libelle">Budget estimé de la semaine</div></div>
-      </div>
-    </div>
-    <div class="col-lg-8 print-plein">
-      <div class="carte p-4">
-        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
-          <h2 class="h5 fw-bold m-0 d-flex align-items-center gap-2"><i class="ti ti-shopping-cart text-success"></i>Liste de courses de la semaine</h2>
-          {% if courses %}
-            <div class="d-flex gap-2 no-print">
-              <button type="button" class="btn btn-outline-secondary btn-sm" onclick="window.print()"><i class="ti ti-printer"></i>Imprimer</button>
-              <a target="_blank" rel="noopener" class="btn btn-outline-success btn-sm" href="https://api.whatsapp.com/send?text={{ 'Courses de la semaine :'|urlencode }}%0A{% for c in courses %}-%20{{ c.ingredient|urlencode }}%20%3A%20{{ c.manque|nombre|urlencode }}%20{{ c.ingredient.unite|urlencode }}%0A{% endfor %}"><i class="ti ti-brand-whatsapp"></i>Envoyer</a>
-            </div>
-          {% endif %}
-        </div>
-        {% if courses %}
-          <ul class="liste-ingredients">
-            {% for c in courses %}
-              <li>
-                <span class="icone-cat {{ c.ingredient.statut }}"><i class="ti ti-{{ c.ingredient.icone }}"></i></span>
-                <div>
-                  <div class="fw-semibold">{{ c.ingredient }}</div>
-                  <small class="text-secondary">Besoin {{ c.besoin|nombre }} {{ c.ingredient.unite }} · en stock {{ c.ingredient.quantite|nombre }} {{ c.ingredient.unite }}</small>
-                </div>
-                <span class="qte">{{ c.manque|nombre }} {{ c.ingredient.unite }}</span>
-              </li>
+  <section class="section no-print">
+    <table class="semaine d-none d-lg-table">
+      <thead>
+        <tr>
+          <th class="moment"></th>
+          {% for jour in semaine %}
+            <th class="{% if jour.aujourdhui %}aujourdhui{% endif %}">{{ jour.date|date:"l"|capfirst }}<small>{{ jour.date|date:"j F" }}</small></th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for ligne in grille %}
+          <tr>
+            <td class="moment">{{ ligne.libelle }}</td>
+            {% for case in ligne.cases %}
+              <td class="{% if case.jour.aujourdhui %}aujourdhui{% endif %}">
+                {% include 'menuapp/_creneau.html' with jour=case.jour creneau=case.creneau %}
+              </td>
             {% endfor %}
-          </ul>
-        {% elif nb_repas %}
-          <div class="vide"><i class="ti ti-circle-check"></i>Ton stock suffit pour tous les repas de la semaine.</div>
-        {% else %}
-          <div class="vide"><i class="ti ti-calendar-plus"></i>Ajoute des repas au planning pour générer ta liste de courses.</div>
-        {% endif %}
-      </div>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <div class="semaine-mobile d-lg-none">
+      {% for jour in semaine %}
+        <div class="jour {% if jour.aujourdhui %}aujourdhui{% endif %}">
+          <strong>{{ jour.date|date:"l j F"|capfirst }}</strong>
+          {% for creneau in jour.creneaux %}
+            <div class="creneau semaine">
+              <span>{{ creneau.libelle }}</span>
+              <div class="flex-fill min-w-0">{% include 'menuapp/_creneau.html' %}</div>
+            </div>
+          {% endfor %}
+        </div>
+      {% endfor %}
     </div>
-  </div>
+  </section>
+
+  <section class="section print-plein" style="max-width: 760px">
+    <div class="d-flex flex-wrap justify-content-between align-items-baseline gap-2 mb-2">
+      <h2 class="titre-section mb-0">Courses de la semaine</h2>
+      {% if courses %}
+        <div class="d-flex gap-3 small no-print">
+          <a href="#" onclick="window.print(); return false;">Imprimer</a>
+          <a target="_blank" rel="noopener" href="https://api.whatsapp.com/send?text={{ 'Courses de la semaine :'|urlencode }}%0A{% for c in courses %}-%20{{ c.ingredient|urlencode }}%20%3A%20{{ c.manque|nombre|urlencode }}%20{{ c.ingredient.unite|urlencode }}%0A{% endfor %}">Envoyer sur WhatsApp</a>
+        </div>
+      {% endif %}
+    </div>
+    <p class="text-secondary">
+      {% if nb_repas %}
+        {{ nb_repas }} repas prévu{{ nb_repas|pluralize }}, budget estimé {{ budget|fcfa }}.
+        {% if not courses %}Ton stock suffit pour toute la semaine.{% endif %}
+      {% else %}
+        Ajoute des repas au planning pour obtenir la liste de ce qu'il faut acheter.
+      {% endif %}
+    </p>
+    {% if courses %}
+      <ul class="lignes">
+        {% for c in courses %}
+          <li>
+            <i class="ti ti-{{ c.ingredient.icone }} ico"></i>
+            <div class="min-w-0">
+              <div class="nom">{{ c.ingredient }}</div>
+              <div class="detail">Il en faut {{ c.besoin|nombre }} {{ c.ingredient.unite }}, tu en as {{ c.ingredient.quantite|nombre }}</div>
+            </div>
+            <div class="fin fw-semibold">{{ c.manque|nombre }} {{ c.ingredient.unite }}</div>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </section>
 {% endblock %}

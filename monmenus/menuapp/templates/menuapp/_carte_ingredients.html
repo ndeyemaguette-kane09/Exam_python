@@ -1,9 +1,0 @@
-<div class="carte p-4 mb-4 {{ classe }}">
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <h2 class="h5 fw-bold m-0">Ingrédients</h2>
-          {% include 'menuapp/_faisabilite.html' %}
-        </div>
-        <div class="jauge {% if not etat.faisable %}{% if etat.score >= 70 %}orange{% else %}rouge{% endif %}{% endif %} mb-3"><span style="width: {{ etat.score }}%"></span></div>
-        {% include 'menuapp/_ingredients_recette.html' %}
-      </div>
-

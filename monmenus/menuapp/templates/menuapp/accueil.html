@@ -2,119 +2,74 @@
 {% load equitable %}
 {% block titre %}Accueil{% endblock %}
 {% block content %}
-  <section class="hero mb-4">
-    <div class="row align-items-center g-3">
-      <div class="col-lg-8">
-        <h1>ÉquiTable</h1>
-        <p class="lead mb-0">Des menus sains, sans se ruiner. Un aperçu de ton frigo et de ton placard.</p>
-      </div>
-      <div class="col-lg-4 text-lg-end">
-        <a href="{% url 'generer_menu' %}" class="btn btn-light btn-lg"><i class="ti ti-arrows-shuffle"></i>Que cuisiner ce soir ?</a>
-      </div>
-    </div>
-  </section>
-
-  <div class="row g-3 mb-4">
-    <div class="col-6 col-lg-3">
-      <div class="carte stat">
-        <div class="stat-icone"><i class="ti ti-basket"></i></div>
-        <div><div class="stat-valeur">{{ total_ingredients }}</div><div class="stat-libelle">Ingrédients en stock</div></div>
-      </div>
-    </div>
-    <div class="col-6 col-lg-3">
-      <div class="carte stat">
-        <div class="stat-icone"><i class="ti ti-chef-hat"></i></div>
-        <div><div class="stat-valeur">{{ nb_faisables }}<small class="fs-6 text-secondary fw-normal">/{{ nb_recettes }}</small></div><div class="stat-libelle">Recettes faisables</div></div>
-      </div>
-    </div>
-    <div class="col-6 col-lg-3">
-      <div class="carte stat">
-        <div class="stat-icone orange"><i class="ti ti-trending-down"></i></div>
-        <div><div class="stat-valeur">{{ ingredients_bas|length }}</div><div class="stat-libelle">Stock bas</div></div>
-      </div>
-    </div>
-    <div class="col-6 col-lg-3">
-      <div class="carte stat">
-        <div class="stat-icone rouge"><i class="ti ti-alert-triangle"></i></div>
-        <div><div class="stat-valeur">{{ ingredients_rupture|length }}</div><div class="stat-libelle">En rupture</div></div>
-      </div>
-    </div>
+  <div class="titre-page">
+    <h1>Bonjour Magui</h1>
+    <p class="resume mt-2">
+      Tu as <strong>{{ total_ingredients }} ingrédient{{ total_ingredients|pluralize }}</strong> en stock
+      et <strong>{{ nb_faisables }} recette{{ nb_faisables|pluralize }} sur {{ nb_recettes }}</strong> faisable{{ nb_faisables|pluralize }} tout de suite.
+      {% if ingredients_rupture %}{{ ingredients_rupture|length }} ingrédient{{ ingredients_rupture|length|pluralize }} en rupture.{% endif %}
+    </p>
   </div>
 
-  <div class="row g-4">
+  <div class="row g-5">
     <div class="col-lg-7">
-      <div class="carte p-4 h-100">
-        <h2 class="h5 fw-bold mb-3 d-flex align-items-center gap-2"><i class="ti ti-alert-triangle text-warning"></i>À racheter bientôt</h2>
+      <section class="section">
+        <h2>À racheter</h2>
         {% if ingredients_rupture or ingredients_bas %}
-          <ul class="liste-ingredients">
+          <ul class="lignes">
             {% for ing in ingredients_rupture %}
               <li>
-                <span class="icone-cat rupture"><i class="ti ti-{{ ing.icone }}"></i></span>
-                <div><div class="fw-semibold">{{ ing }}</div><small class="text-secondary">{{ ing.lieu }}</small></div>
-                <span class="pastille rouge ms-auto">Rupture</span>
-                <a href="{% url 'modifier_ingredient' ing.id %}" class="btn btn-sm btn-outline-secondary btn-icone" title="Mettre à jour"><i class="ti ti-pencil"></i></a>
+                <i class="ti ti-{{ ing.icone }} ico"></i>
+                <div class="min-w-0"><div class="nom">{{ ing }}</div><div class="detail">{{ ing.lieu }}</div></div>
+                <div class="fin"><span class="etat-rupture">Rupture</span><a href="{% url 'modifier_ingredient' ing.id %}" class="small">Mettre à jour</a></div>
               </li>
             {% endfor %}
             {% for ing in ingredients_bas %}
               <li>
-                <span class="icone-cat bas"><i class="ti ti-{{ ing.icone }}"></i></span>
-                <div><div class="fw-semibold">{{ ing }}</div><small class="text-secondary">{{ ing.lieu }} · reste {{ ing.quantite|nombre }} {{ ing.unite }}</small></div>
-                <span class="pastille orange ms-auto">Stock bas</span>
-                <a href="{% url 'modifier_ingredient' ing.id %}" class="btn btn-sm btn-outline-secondary btn-icone" title="Mettre à jour"><i class="ti ti-pencil"></i></a>
+                <i class="ti ti-{{ ing.icone }} ico"></i>
+                <div class="min-w-0"><div class="nom">{{ ing }}</div><div class="detail">{{ ing.lieu }}</div></div>
+                <div class="fin"><span class="etat-bas">Il reste {{ ing.quantite|nombre }} {{ ing.unite }}</span><a href="{% url 'modifier_ingredient' ing.id %}" class="small">Mettre à jour</a></div>
               </li>
             {% endfor %}
           </ul>
         {% else %}
-          <div class="vide"><i class="ti ti-circle-check"></i>Tout est bien rempli, rien à racheter pour l'instant.</div>
+          <p class="vide">Rien à racheter pour l'instant.</p>
         {% endif %}
-      </div>
+      </section>
     </div>
 
-    <div class="col-lg-5 d-flex flex-column gap-4">
-      <div class="carte p-4">
-        <h2 class="h5 fw-bold mb-3 d-flex align-items-center gap-2"><i class="ti ti-calendar-week text-success"></i>Au menu aujourd'hui</h2>
-        {% for repas in repas_du_jour %}
-          <a href="{% url 'detail_recette' repas.recette.id %}" class="d-flex justify-content-between align-items-center text-decoration-none text-reset py-2 border-bottom">
-            <span class="fw-semibold">{{ repas.recette }}</span>
-            <span class="pastille gris">{{ repas.get_moment_display }}</span>
-          </a>
-        {% empty %}
-          <p class="text-secondary mb-3">Rien de prévu pour aujourd'hui.</p>
-          <a href="{% url 'planning' %}" class="btn btn-outline-success btn-sm"><i class="ti ti-calendar-plus"></i>Planifier la semaine</a>
-        {% endfor %}
-      </div>
+    <div class="col-lg-5">
+      <section class="section">
+        <h2>Aujourd'hui</h2>
+        {% if repas_du_jour %}
+          <ul class="lignes">
+            {% for repas in repas_du_jour %}
+              <li>
+                <div class="min-w-0"><div class="detail">{{ repas.get_moment_display }}</div><a href="{% url 'detail_recette' repas.recette.id %}" class="nom text-reset d-block">{{ repas.recette }}</a></div>
+                <div class="fin"><a href="{% url 'confirmer_recette' repas.recette.id %}" class="small">Cuisiner</a></div>
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p class="text-secondary mb-2">Aucun repas prévu aujourd'hui.</p>
+          <a href="{% url 'planning' %}">Planifier la semaine</a>
+        {% endif %}
+      </section>
 
       {% if suggestion %}
-        <div class="carte overflow-hidden">
-          {% if suggestion.image %}<img src="{{ suggestion.image.url }}" alt="{{ suggestion.nom }}" class="recette-photo" style="aspect-ratio: 16/9">{% endif %}
-          <div class="p-4">
-            <div class="text-secondary small mb-1">Suggestion avec ce que tu as</div>
-            <h3 class="h5 fw-bold">{{ suggestion.nom }}</h3>
-            <div class="meta mb-3">
-              <span><i class="ti ti-clock"></i> {{ suggestion.temps_preparation|duree }}</span>
-              <span><i class="ti ti-coin"></i> {{ suggestion.cout_estime|fcfa }}</span>
+        <section class="section">
+          <h2>Une idée pour ce soir</h2>
+          <article class="recette">
+            {% if suggestion.image %}<img src="{{ suggestion.image.url }}" alt="" class="photo">{% endif %}
+            <h3><a href="{% url 'detail_recette' suggestion.id %}">{{ suggestion.nom }}</a></h3>
+            <div class="infos">
+              <span>{{ suggestion.temps_preparation|duree }}</span>
+              <span>{{ suggestion.cout_estime|fcfa }}</span>
             </div>
-            <a href="{% url 'detail_recette' suggestion.id %}" class="btn btn-success btn-sm">Voir la recette<i class="ti ti-arrow-right ms-1 me-0"></i></a>
-          </div>
-        </div>
+            <div class="etat"><span class="etat-ok">Faisable avec ton stock</span></div>
+          </article>
+        </section>
       {% endif %}
-    </div>
-  </div>
-
-  <div class="row g-3 mt-1">
-    <div class="col-md-6">
-      <a href="{% url 'frigo' %}" class="carte carte-lien d-flex align-items-center gap-3 p-4 text-decoration-none text-reset">
-        <span class="stat-icone"><i class="ti ti-fridge"></i></span>
-        <div><div class="fw-bold">Mon frigo</div><small class="text-secondary">Produits frais</small></div>
-        <i class="ti ti-arrow-right ms-auto text-secondary"></i>
-      </a>
-    </div>
-    <div class="col-md-6">
-      <a href="{% url 'placard' %}" class="carte carte-lien d-flex align-items-center gap-3 p-4 text-decoration-none text-reset">
-        <span class="stat-icone"><i class="ti ti-archive"></i></span>
-        <div><div class="fw-bold">Mon placard</div><small class="text-secondary">Produits secs</small></div>
-        <i class="ti ti-arrow-right ms-auto text-secondary"></i>
-      </a>
     </div>
   </div>
 {% endblock %}

@@ -3,65 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block titre %}ÉquiTable{% endblock %} · ÉquiTable</title>
+  <title>{% block titre %}Accueil{% endblock %} | ÉquiTable</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css" rel="stylesheet">
   <link href="{% static 'menuapp/style.css' %}" rel="stylesheet">
 </head>
 <body>
   {% with page=request.resolver_match.url_name %}
-  <nav class="navbar navbar-expand-xl bg-white border-bottom mb-4 sticky-top">
+  <nav class="navbar navbar-expand-xl entete py-0 sticky-top">
     <div class="container">
-      <a class="navbar-brand d-flex align-items-center gap-2" href="{% url 'accueil' %}">
-        <i class="ti ti-chef-hat"></i> ÉquiTable
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-              data-bs-target="#navbarNav" aria-controls="navbarNav"
+      <a class="navbar-brand py-3" href="{% url 'accueil' %}">Équi<span>Table</span></a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navigation" aria-controls="navigation"
               aria-expanded="false" aria-label="Ouvrir le menu">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav mx-auto gap-xl-1 py-2 py-xl-0">
-          <li class="nav-item">
-            <a class="nav-link {% if page == 'accueil' %}active{% endif %}" href="{% url 'accueil' %}"><i class="ti ti-home"></i>Accueil</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link {% if page == 'frigo' %}active{% endif %}" href="{% url 'frigo' %}"><i class="ti ti-fridge"></i>Frigo</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link {% if page == 'placard' %}active{% endif %}" href="{% url 'placard' %}"><i class="ti ti-archive"></i>Placard</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link {% if page == 'recettes' or page == 'detail_recette' or page == 'creer_recette' or page == 'modifier_recette' %}active{% endif %}" href="{% url 'recettes' %}"><i class="ti ti-book-2"></i>Recettes</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link {% if page == 'planning' %}active{% endif %}" href="{% url 'planning' %}"><i class="ti ti-calendar-week"></i>Planning</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link {% if page == 'historique' %}active{% endif %}" href="{% url 'historique' %}"><i class="ti ti-history"></i>Historique</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link {% if page == 'mes_favoris' %}active{% endif %}" href="{% url 'mes_favoris' %}"><i class="ti ti-heart"></i>Favoris</a>
-          </li>
+      <div class="collapse navbar-collapse" id="navigation">
+        <ul class="navbar-nav ms-xl-4 me-auto gap-xl-1 pb-3 pb-xl-0">
+          <li class="nav-item"><a class="nav-link {% if page == 'accueil' %}active{% endif %}" href="{% url 'accueil' %}">Accueil</a></li>
+          <li class="nav-item"><a class="nav-link {% if page == 'frigo' %}active{% endif %}" href="{% url 'frigo' %}">Frigo</a></li>
+          <li class="nav-item"><a class="nav-link {% if page == 'placard' %}active{% endif %}" href="{% url 'placard' %}">Placard</a></li>
+          <li class="nav-item"><a class="nav-link {% if page == 'recettes' or page == 'detail_recette' or page == 'creer_recette' or page == 'modifier_recette' %}active{% endif %}" href="{% url 'recettes' %}">Recettes</a></li>
+          <li class="nav-item"><a class="nav-link {% if page == 'planning' %}active{% endif %}" href="{% url 'planning' %}">Planning</a></li>
+          <li class="nav-item"><a class="nav-link {% if page == 'historique' %}active{% endif %}" href="{% url 'historique' %}">Historique</a></li>
+          <li class="nav-item"><a class="nav-link {% if page == 'mes_favoris' %}active{% endif %}" href="{% url 'mes_favoris' %}">Favoris</a></li>
         </ul>
-        <a href="{% url 'generer_menu' %}" class="btn btn-success mb-3 mb-xl-0"><i class="ti ti-arrows-shuffle"></i>Que cuisiner ?</a>
+        <a href="{% url 'generer_menu' %}" class="btn btn-primary btn-sm mb-3 mb-xl-0">Que cuisiner ?</a>
       </div>
     </div>
   </nav>
   {% endwith %}
 
-  <main class="container">
+  <main class="container page">
     {% for message in messages %}
-      <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show d-flex align-items-center gap-2" role="alert">
-        <i class="ti {% if message.tags == 'error' %}ti-alert-triangle{% else %}ti-circle-check{% endif %} fs-5"></i>
-        <div>{{ message }}</div>
+      <div class="alert {% if message.tags == 'error' %}alert-danger{% else %}alert-light border{% endif %} alert-dismissible fade show" role="alert">
+        {{ message }}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fermer"></button>
       </div>
     {% endfor %}
     {% block content %}{% endblock %}
   </main>
 
-  <footer class="pied">ÉquiTable · Des menus sains, sans se ruiner</footer>
+  <footer class="pied">
+    <div class="container d-flex flex-wrap justify-content-between gap-2">
+      <span>ÉquiTable, des menus sains sans se ruiner</span>
+      <span>Conçu et développé par <strong>Ndeye Maguette Kane</strong>, {% now "Y" %}</span>
+    </div>
+  </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   {% block scripts %}{% endblock %}
 </body>

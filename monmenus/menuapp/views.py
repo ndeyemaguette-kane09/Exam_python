@@ -406,8 +406,17 @@ def planning(request):
         for jour in jours
     ]
 
+    grille = [
+        {
+            'libelle': libelle,
+            'cases': [{'jour': jour, 'creneau': jour['creneaux'][i]} for jour in semaine],
+        }
+        for i, (code, libelle) in enumerate(Repas.MOMENTS)
+    ]
+
     return render(request, 'menuapp/planning.html', {
         'semaine': semaine,
+        'grille': grille,
         'lundi': lundi,
         'dimanche': jours[-1],
         'precedente': lundi - timedelta(days=7),

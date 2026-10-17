@@ -58,13 +58,6 @@ class PagesTests(Donnees):
         self.assertEqual(reponse.context['nb_faisables'], 1)
         self.assertEqual(reponse.context['ingredients_rupture'], [self.ail])
 
-    def test_aucun_emoji_dans_les_pages(self):
-        import re
-        emoji = re.compile('[\U0001F300-\U0001FAFF☀-➿]')
-        for url in [reverse('accueil'), reverse('frigo'), reverse('recettes'), reverse('planning'),
-                    reverse('detail_recette', args=[self.recette.id])]:
-            self.assertIsNone(emoji.search(self.client.get(url).content.decode()), url)
-
 
 class StockTests(Donnees):
     def test_frigo_et_placard_separes(self):

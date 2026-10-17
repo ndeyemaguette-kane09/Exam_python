@@ -1,35 +1,29 @@
-# ÉquiTable 🍽️
+# ÉquiTable
 
-Des menus sains, sans se ruiner. ÉquiTable gère ce qu'il y a dans ton frigo et ton placard, te propose des recettes (dont des classiques sénégalais comme le Djolof Rice ou le Yassa) et met ton stock à jour quand tu cuisines.
+Application web de gestion de cuisine : suivi du stock (frigo et placard), recettes, planning des repas de la semaine et liste de courses. Les recettes de démo incluent des plats sénégalais comme le Djolof Rice et le Yassa.
 
-Projet Django réalisé à l'origine pour l'examen de Python, repris et amélioré depuis.
+Projet commencé pour l'examen de Python et repris depuis.
+
+Auteure : Ndeye Maguette Kane
 
 ## Fonctionnalités
 
-- **Frigo & Placard** : ingrédients rangés par catégorie, avec unité, lieu et seuil de stock bas
-- **Alertes** : l'accueil signale ce qui est en rupture et ce qui va bientôt manquer
-- **Recettes** avec photo, coût (FCFA), temps, portions et quantités par ingrédient ; ajout, modification et suppression depuis l'appli
-- **Faisabilité** : chaque recette indique si elle est faisable avec ton stock, et ce qu'il manque
-- **Recherche et filtres** par nom, ingrédient, budget, temps ou « faisable maintenant »
-- **Que cuisiner ?** : une suggestion en priorité avec ce que tu as déjà, ou au hasard
-- **Cuisiner une recette** : les quantités sont pré-remplies, le stock est décrémenté et le repas part dans l'historique
-- **Planning de la semaine** (déjeuner et dîner) avec liste de courses globale et budget estimé
-- **Historique** en tableau de bord : repas et budget du mois, recette la plus cuisinée, chronologie
-- **Favoris**, **export PDF** mis en page et partage WhatsApp de la liste de courses
+- Gestion du frigo et du placard : quantité, unité, catégorie, seuil d'alerte
+- Alertes sur l'accueil pour les ingrédients en rupture ou en stock bas
+- Recettes avec photo, coût en FCFA, temps, portions et quantités par ingrédient
+- Pour chaque recette : ingrédients disponibles, ingrédients manquants et liste de courses
+- Recherche et filtres par nom, ingrédient, budget, temps de préparation et disponibilité
+- Suggestion de recette en fonction du stock
+- Validation d'une recette cuisinée, avec mise à jour automatique du stock
+- Planning des déjeuners et dîners de la semaine, avec liste de courses et budget
+- Historique des repas et statistiques du mois
+- Favoris, export PDF et partage de la liste de courses sur WhatsApp
 
-## Tester sans rien installer
-
-[![Ouvrir dans GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/ndeyemaguette-kane09/Exam_python)
-
-Codespaces installe les dépendances, crée la base avec les données de démo et lance le serveur tout seul. L'appli s'ouvre dans un nouvel onglet au bout d'une minute environ. Si l'onglet ne s'ouvre pas, va dans l'onglet **Ports** de VS Code et clique sur l'icône 🌐 du port 8000.
-
-Pense à arrêter le Codespace quand tu as fini (menu **Codespaces → Stop Current Codespace**) pour ne pas consommer ton quota.
-
-## Lancer le projet en local
+## Lancer le projet
 
 ```bash
 python3 -m venv env
-source env/bin/activate        # Windows : env\Scripts\activate
+source env/bin/activate
 pip install -r requirements.txt
 
 cd monmenus
@@ -38,9 +32,13 @@ python manage.py loaddata donnees_demo
 python manage.py runserver
 ```
 
-Puis ouvre http://127.0.0.1:8000.
+L'application est disponible sur http://127.0.0.1:8000. Sous Windows, l'environnement s'active avec `env\Scripts\activate`.
 
-Pour accéder à l'admin Django (`/admin`) : `python manage.py createsuperuser`.
+Le projet peut aussi être ouvert dans GitHub Codespaces : l'installation, la base de démo et le serveur sont lancés automatiquement.
+
+[![Ouvrir dans GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/ndeyemaguette-kane09/Exam_python)
+
+Pour l'interface d'administration (`/admin`), créer un compte avec `python manage.py createsuperuser`.
 
 ## Tests
 
@@ -51,15 +49,15 @@ python manage.py test menuapp
 
 ## Configuration
 
-Les valeurs par défaut conviennent au développement local. En dehors, définis :
-
 | Variable | Rôle |
 |---|---|
-| `DJANGO_SECRET_KEY` | clé secrète Django |
-| `DJANGO_DEBUG` | `1` en dev, `0` en production |
-| `DJANGO_ALLOWED_HOSTS` | domaines autorisés, séparés par des virgules |
-| `DJANGO_CSRF_TRUSTED_ORIGINS` | origines HTTPS de confiance pour les formulaires, séparées par des virgules |
+| `DJANGO_SECRET_KEY` | Clé secrète Django |
+| `DJANGO_DEBUG` | `1` en développement, `0` en production |
+| `DJANGO_ALLOWED_HOSTS` | Domaines autorisés, séparés par des virgules |
+| `DJANGO_CSRF_TRUSTED_ORIGINS` | Origines HTTPS autorisées pour les formulaires |
 
-## Stack
+Sans ces variables, les valeurs par défaut conviennent au développement local.
 
-Django 5.2 · SQLite · Bootstrap 5 · Tabler Icons · xhtml2pdf
+## Technologies
+
+Django 5.2, SQLite, Bootstrap 5, Tabler Icons, xhtml2pdf

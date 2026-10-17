@@ -1,88 +1,80 @@
 {% extends 'menuapp/base.html' %}
 {% block titre %}{% if recette %}Modifier {{ recette.nom }}{% else %}Nouvelle recette{% endif %}{% endblock %}
 {% block content %}
-  <div class="page-titre">
-    <div>
-      <h1><i class="ti ti-chef-hat"></i>{% if recette %}Modifier {{ recette.nom }}{% else %}Nouvelle recette{% endif %}</h1>
-      <p>Les quantités servent à vérifier ton stock et à préparer ta liste de courses.</p>
-    </div>
+  <div class="titre-page">
+    <h1>{% if recette %}Modifier {{ recette.nom }}{% else %}Nouvelle recette{% endif %}</h1>
+    <p>Les quantités servent à vérifier ton stock et à préparer la liste de courses.</p>
   </div>
 
   {% if aucun_ingredient %}
-    <div class="alert alert-warning">Ajoute d'abord des ingrédients dans ton <a href="{% url 'frigo' %}">frigo</a> ou ton <a href="{% url 'placard' %}">placard</a> pour pouvoir les utiliser dans une recette.</div>
+    <div class="alert alert-light border">Ajoute d'abord des ingrédients dans ton <a href="{% url 'frigo' %}">frigo</a> ou ton <a href="{% url 'placard' %}">placard</a>.</div>
   {% endif %}
 
   <form method="post" enctype="multipart/form-data" novalidate>
     {% csrf_token %}
-    <div class="row g-4">
+    <div class="row g-5">
       <div class="col-lg-6">
-        <div class="carte p-4 h-100">
-          <h2 class="h5 fw-bold mb-3">Informations</h2>
-          <div class="row g-3">
-            {% for field in form %}
-              <div class="{% if field.name == 'nom' or field.name == 'instructions' or field.name == 'image' %}col-12{% else %}col-sm-4{% endif %}">
-                <label for="{{ field.id_for_label }}" class="form-label fw-semibold">{{ field.label }}</label>
-                {% if field.name == 'image' and recette.image %}
-                  <div class="d-flex align-items-center gap-3 mb-2">
-                    <img src="{{ recette.image.url }}" alt="" style="width: 96px; height: 64px; object-fit: cover; border-radius: 8px">
-                    <small class="text-secondary">Choisis un fichier pour remplacer la photo actuelle.</small>
-                  </div>
-                {% endif %}
-                {{ field }}
-                {% if field.help_text %}<div class="form-text">{{ field.help_text }}</div>{% endif %}
-                {% for error in field.errors %}<div class="text-danger small mt-1">{{ error }}</div>{% endfor %}
-              </div>
-            {% endfor %}
-          </div>
+        <h2 class="titre-section">Informations</h2>
+        <div class="row g-3">
+          {% for field in form %}
+            <div class="{% if field.name == 'nom' or field.name == 'instructions' or field.name == 'image' %}col-12{% else %}col-sm-4{% endif %}">
+              <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+              {% if field.name == 'image' and recette.image %}
+                <div class="d-flex align-items-center gap-3 mb-2">
+                  <img src="{{ recette.image.url }}" alt="" class="vignette" style="width: 84px; height: 56px">
+                  <small class="text-secondary">Choisis un fichier pour remplacer la photo actuelle.</small>
+                </div>
+              {% endif %}
+              {{ field }}
+              {% if field.help_text %}<div class="form-text">{{ field.help_text }}</div>{% endif %}
+              {% for error in field.errors %}<div class="text-danger small mt-1">{{ error }}</div>{% endfor %}
+            </div>
+          {% endfor %}
         </div>
       </div>
 
       <div class="col-lg-6">
-        <div class="carte p-4 h-100">
-          <h2 class="h5 fw-bold mb-1">Ingrédients</h2>
-          <p class="text-secondary small">La quantité est exprimée dans l'unité de ton stock.</p>
-          {{ lignes.management_form }}
-          {% for error in lignes.non_form_errors %}<div class="alert alert-danger py-2">{{ error }}</div>{% endfor %}
-          <div class="row g-2 small text-secondary fw-semibold mb-1">
-            <div class="col-7">Ingrédient</div><div class="col-3">Quantité</div>
-          </div>
-          <div id="lignes">
-            {% for ligne in lignes %}
-              <div class="row g-2 align-items-start mb-2 ligne">
-                {% for hidden in ligne.hidden_fields %}{{ hidden }}{% endfor %}
-                <div class="col-7">
-                  {{ ligne.ingredient }}
-                  {% for error in ligne.ingredient.errors %}<div class="text-danger small">{{ error }}</div>{% endfor %}
-                </div>
-                <div class="col-3">
-                  {{ ligne.quantite }}
-                  {% for error in ligne.quantite.errors %}<div class="text-danger small">{{ error }}</div>{% endfor %}
-                </div>
-                <div class="col-2 text-end">
-                  {% if ligne.instance.pk %}
-                    <label class="btn btn-outline-danger btn-icone w-100" title="Retirer">
-                      {{ ligne.DELETE.as_hidden }}<input type="checkbox" class="d-none retirer" data-cible="{{ ligne.DELETE.id_for_label }}"><i class="ti ti-trash"></i>
-                    </label>
-                  {% endif %}
-                </div>
-              </div>
-            {% endfor %}
-          </div>
-          <template id="modele-ligne">
+        <h2 class="titre-section">Ingrédients</h2>
+        <p class="text-secondary small">Quantité dans l'unité de ton stock.</p>
+        {{ lignes.management_form }}
+        {% for error in lignes.non_form_errors %}<div class="alert alert-danger py-2">{{ error }}</div>{% endfor %}
+        <div id="lignes">
+          {% for ligne in lignes %}
             <div class="row g-2 align-items-start mb-2 ligne">
-              <div class="col-7">{{ lignes.empty_form.ingredient }}</div>
-              <div class="col-3">{{ lignes.empty_form.quantite }}</div>
-              <div class="col-2"></div>
+              {% for hidden in ligne.hidden_fields %}{{ hidden }}{% endfor %}
+              <div class="col-7">
+                <label class="visually-hidden" for="{{ ligne.ingredient.id_for_label }}">Ingrédient</label>
+                {{ ligne.ingredient }}
+                {% for error in ligne.ingredient.errors %}<div class="text-danger small">{{ error }}</div>{% endfor %}
+              </div>
+              <div class="col-3">
+                <label class="visually-hidden" for="{{ ligne.quantite.id_for_label }}">Quantité</label>
+                {{ ligne.quantite }}
+                {% for error in ligne.quantite.errors %}<div class="text-danger small">{{ error }}</div>{% endfor %}
+              </div>
+              <div class="col-2">
+                {% if ligne.instance.pk %}
+                  {{ ligne.DELETE.as_hidden }}
+                  <button type="button" class="btn btn-supprimer btn-icone retirer" data-cible="{{ ligne.DELETE.id_for_label }}" title="Retirer" aria-label="Retirer cet ingrédient"><i class="ti ti-trash"></i></button>
+                {% endif %}
+              </div>
             </div>
-          </template>
-          <button type="button" class="btn btn-outline-success btn-sm mt-2" id="ajouter-ligne"><i class="ti ti-plus"></i>Ajouter un ingrédient</button>
+          {% endfor %}
         </div>
+        <template id="modele-ligne">
+          <div class="row g-2 align-items-start mb-2 ligne">
+            <div class="col-7">{{ lignes.empty_form.ingredient }}</div>
+            <div class="col-3">{{ lignes.empty_form.quantite }}</div>
+            <div class="col-2"></div>
+          </div>
+        </template>
+        <button type="button" class="btn btn-link btn-sm" id="ajouter-ligne"><i class="ti ti-plus"></i>Ajouter un ingrédient</button>
       </div>
     </div>
 
-    <div class="d-flex gap-2 mt-4">
-      <button type="submit" class="btn btn-success"><i class="ti ti-check"></i>Enregistrer la recette</button>
-      <a href="{% if recette %}{% url 'detail_recette' recette.id %}{% else %}{% url 'recettes' %}{% endif %}" class="btn btn-outline-secondary">Annuler</a>
+    <div class="d-flex gap-2 mt-5">
+      <button type="submit" class="btn btn-primary">Enregistrer la recette</button>
+      <a href="{% if recette %}{% url 'detail_recette' recette.id %}{% else %}{% url 'recettes' %}{% endif %}" class="btn btn-light">Annuler</a>
     </div>
   </form>
 {% endblock %}
@@ -98,11 +90,10 @@
       conteneur.insertAdjacentHTML('beforeend', modele.replace(/__prefix__/g, index));
       total.value = index + 1;
     });
-    document.querySelectorAll('.retirer').forEach(function (case_) {
-      case_.closest('label').addEventListener('click', function (e) {
-        e.preventDefault();
-        const champ = document.getElementById(case_.dataset.cible);
-        const ligne = case_.closest('.ligne');
+    document.querySelectorAll('.retirer').forEach(function (bouton) {
+      bouton.addEventListener('click', function () {
+        const champ = document.getElementById(bouton.dataset.cible);
+        const ligne = bouton.closest('.ligne');
         const retiree = champ.value === 'on';
         champ.value = retiree ? '' : 'on';
         ligne.style.opacity = retiree ? '1' : '.4';

@@ -1,0 +1,20 @@
+{% if creneau.repas %}
+  <a href="{% url 'detail_recette' creneau.repas.recette.id %}" class="plat">{{ creneau.repas.recette }}</a>
+  <div class="gestes">
+    <a href="{% url 'confirmer_recette' creneau.repas.recette.id %}">Cuisiner</a>
+    <form method="post" action="{% url 'retirer_repas' creneau.repas.id %}" class="m-0">
+      {% csrf_token %}
+      <button type="submit">Retirer</button>
+    </form>
+  </div>
+{% else %}
+  <form method="post" action="{% url 'planifier_repas' %}" class="m-0">
+    {% csrf_token %}
+    <input type="hidden" name="date" value="{{ jour.date|date:'Y-m-d' }}">
+    <input type="hidden" name="moment" value="{{ creneau.moment }}">
+    <select name="recette" class="form-select" onchange="this.form.submit()" aria-label="{{ creneau.libelle }} du {{ jour.date|date:'l j' }}">
+      <option value="">Ajouter</option>
+      {% for r in recettes %}<option value="{{ r.id }}">{{ r.nom }}</option>{% endfor %}
+    </select>
+  </form>
+{% endif %}
