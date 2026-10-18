@@ -6,6 +6,8 @@ Projet commencé pour l'examen de Python et repris depuis.
 
 Ndeye Maguette Kane, 2025
 
+Le [cahier des charges](docs/EquiTable_cahier_des_charges.pdf) décrit la conception de l'application, son modèle de données et les technologies utilisées.
+
 ## Fonctionnalités
 
 - Gestion du frigo et du placard : quantité, unité, catégorie, seuil d'alerte
