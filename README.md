@@ -28,13 +28,16 @@ python3 -m venv env
 source env/bin/activate
 pip install -r requirements.txt
 
+export DJANGO_DEBUG=1
 cd monmenus
 python manage.py migrate
 python manage.py loaddata donnees_demo
 python manage.py runserver
 ```
 
-L'application est disponible sur http://127.0.0.1:8000. Sous Windows, l'environnement s'active avec `env\Scripts\activate`.
+L'application est disponible sur http://127.0.0.1:8000. Sous Windows, l'environnement s'active avec `env\Scripts\activate` et la variable se définit avec `set DJANGO_DEBUG=1`.
+
+`DJANGO_DEBUG=1` active le mode développement. Sans cette variable, l'application démarre en mode production et exige une clé secrète.
 
 Le projet peut aussi être ouvert dans GitHub Codespaces : l'installation, la base de démo et le serveur sont lancés automatiquement.
 
@@ -46,19 +49,21 @@ Pour l'interface d'administration (`/admin`), créer un compte avec `python mana
 
 ```bash
 cd monmenus
-python manage.py test menuapp
+DJANGO_DEBUG=1 python manage.py test menuapp
 ```
 
 ## Configuration
 
 | Variable | Rôle |
 |---|---|
-| `DJANGO_SECRET_KEY` | Clé secrète Django |
-| `DJANGO_DEBUG` | `1` en développement, `0` en production |
+| `DJANGO_DEBUG` | `1` en développement. Absente ou à `0` en production |
+| `DJANGO_SECRET_KEY` | Clé secrète, obligatoire en production |
 | `DJANGO_ALLOWED_HOSTS` | Domaines autorisés, séparés par des virgules |
 | `DJANGO_CSRF_TRUSTED_ORIGINS` | Origines HTTPS autorisées pour les formulaires |
+| `DJANGO_SSL_REDIRECT` | `0` pour tester le mode production en local sans HTTPS |
+| `DJANGO_HSTS_SECONDS` | Durée HSTS en secondes, 3600 par défaut |
 
-Sans ces variables, les valeurs par défaut conviennent au développement local.
+En production, les fichiers statiques sont rassemblés avec `python manage.py collectstatic` dans `monmenus/staticfiles/`.
 
 ## Technologies
 

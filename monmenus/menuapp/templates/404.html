@@ -1,0 +1,11 @@
+{% extends 'menuapp/base.html' %}
+{% block titre %}Page introuvable{% endblock %}
+{% block content %}
+  <div style="max-width: 560px">
+    <div class="titre-page">
+      <h1>Page introuvable</h1>
+      <p>Cette page n'existe pas ou a été supprimée.</p>
+    </div>
+    <a href="{% url 'accueil' %}" class="btn btn-primary">Retour à l'accueil</a>
+  </div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% load static %}<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Erreur | ÉquiTable</title>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="{% static 'menuapp/style.css' %}" rel="stylesheet">
+  <link rel="icon" href="{% static 'menuapp/logo.svg' %}" type="image/svg+xml">
+</head>
+<body>
+  <main class="container page" style="max-width: 560px">
+    <img src="{% static 'menuapp/logo.svg' %}" alt="" width="32" height="32" class="mb-4">
+    <div class="titre-page">
+      <h1>Un problème est survenu</h1>
+      <p>L'erreur a été enregistrée. Réessaie dans quelques instants.</p>
+    </div>
+    <a href="/" class="btn btn-primary">Retour à l'accueil</a>
+  </main>
+</body>
+</html>
